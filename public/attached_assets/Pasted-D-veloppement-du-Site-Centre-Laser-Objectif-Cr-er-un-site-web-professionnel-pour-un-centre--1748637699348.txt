@@ -1,0 +1,231 @@
+Développement du Site Centre Laser
+
+**Objectif :** Créer un site web professionnel pour un centre d'épilation laser médicale, inspiré de l'architecture et de l'expérience utilisateur de Maison du Laser, avec une identité visuelle moderne et distinctive.
+
+### Stack Technique :
+- **Frontend :** Next.js 14+ avec TypeScript et App Router
+- **Styling :** Tailwind CSS avec design system personnalisé
+- **Animations :** GSAP pour micro-interactions et animations fluides
+- **Backend :** Firebase v9+ (Firestore, Authentication, Storage)
+- **Images :** Next.js Image avec optimisation automatique
+- **Déploiement :** Vercel avec CI/CD
+
+### Architecture du Site et Fonctionnalités :
+
+#### 1. **Navigation et Header**
+- Menu horizontal avec sous-menus déroulants (Services → Visage/Aisselles/Jambes/Maillot)
+- Sticky header avec logo et CTA "Prendre RDV" prominents
+- Menu mobile hamburger responsive
+- Numéro de téléphone visible en permanence
+
+#### 2. **Page d'Accueil - Sections Spécifiques**
+
+**Hero Section :**
+- Image professionnelle en arrière-plan (traitement laser)
+- Overlay avec texte principal : "Les experts de l'épilation laser"
+- Sous-titre avec 4 piliers : "Résultats - Inclusivité - Confort - Tarifs"
+- CTA principal "Prendre RDV" + "En savoir plus"
+
+**Section "Une autre vision de l'épilation laser" :**
+- Titre avec sous-titre "Notre philosophie en 4 axes"
+- Image du centre médical (architecture moderne)
+- Texte sur la confiance et bien-être
+- Galerie d'images (4 photos : traitement, centre, logo, devanture)
+
+**Section "Suivi médical" :**
+- Image consultation médecin-patient
+- Mise en avant de l'équipe médicale certifiée
+- Texte sur l'accompagnement personnalisé
+
+**Section "Technologies médicales" :**
+- Image équipement laser professionnel
+- Description des technologies Gentle Max Pro et Clarity II
+- Vidéo explicative intégrée
+
+**Section "Service premium" :**
+- Images avant/après et consultation
+- Statistiques : "97% de nos patients satisfaits"
+- Promesse de prise de RDV sous 14 jours
+
+**Section Valeurs (3 colonnes) :**
+- Plus qu'un simple centre
+- Notre Histoire
+- Notre Philosophie
+
+#### 3. **Pages Services Détaillées**
+
+**Page "Épilation laser médical" :**
+- Hero avec titre "Épilation laser médical - L'épilation définitive, la vraie"
+- Section "Une peau sans poils" avec sous-titre "Une peau infiniment plus douce"
+- Explication détaillée du processus laser
+- Section "Pourquoi le laser ?" avec avantages
+- Technologies utilisées (Gentle Max Pro, Clarity II)
+- Section "Le processus" avec étapes détaillées
+
+**Pages par zone corporelle :**
+- Épilation définitive des aisselles
+- Chaque zone avec processus spécifique
+- FAQ dédiée à chaque zone
+- Images avant/après
+
+#### 4. **Système de Tarification Complexe**
+
+**Structure tarifaire à implémenter :**
+```javascript
+tarifs: {
+  zones: [
+    {
+      categorie: "LES PLUS DEMANDÉES",
+      services: [
+        { nom: "Aisselles", prixNormal: 446, prixPromo: 223 },
+        { nom: "Maillot classique", prixNormal: 446, prixPromo: 223 },
+        { nom: "Demi-jambes", prixNormal: 1134, prixPromo: 567 }
+      ]
+    },
+    {
+      categorie: "VISAGE",
+      services: [
+        { nom: "Inter-sourcils", prixNormal: 286, prixPromo: 143 },
+        { nom: "Lèvre supérieure", prixNormal: 286, prixPromo: 143 },
+        { nom: "Menton", prixNormal: 286, prixPromo: 143 },
+        { nom: "Nuque", prixNormal: 430, prixPromo: 215 },
+        { nom: "Pommettes", prixNormal: 430, prixPromo: 215 },
+        { nom: "Visage complet", prixNormal: 786, prixPromo: 393 }
+      ]
+    },
+    // ... autres catégories
+  ],
+  forfaitsMultiZones: [
+    {
+      nom: "Torse + Abdomen",
+      prixNormal: 1166,
+      prixPromo: 583
+    }
+    // ... autres forfaits
+  ]
+}
+```
+
+#### 5. **Système de Réservation Avancé**
+
+**Fonctionnalités requises :**
+- Sélection du centre (Paris 11, Paris 12, Paris 14, Paris 15, Argenteuil, Bruxelles)
+- Choix du service par catégorie
+- Calendrier intelligent avec créneaux disponibles
+- Gestion des tarifs promotionnels (-50% Summer Body)
+- Formulaire client avec informations médicales
+- Confirmation automatique par email/SMS
+
+**Structure Firebase pour réservations :**
+```javascript
+reservation: {
+  id: string,
+  centreId: string,
+  serviceIds: string[],
+  clientInfo: {
+    nom: string,
+    prenom: string,
+    email: string,
+    telephone: string,
+    age: number,
+    typesPeau: string
+  },
+  dateRdv: timestamp,
+  heureRdv: string,
+  prixTotal: number,
+  statut: 'confirmé' | 'en_attente' | 'annulé',
+  consultationOfferte: boolean
+}
+```
+
+#### 6. **Gestion des Centres**
+
+**Données centres :**
+```javascript
+centres: [
+  {
+    id: "paris-11",
+    nom: "Centre Paris 11 - Voltaire",
+    adresse: "100 bd Voltaire, 75011 Paris",
+    telephone: "01 84 80 16 50",
+    metro: "Voltaire ou Saint-Ambroise, ligne 5",
+    parking: "ZenPark PARIS – BASTILLE – VOLTAIRE",
+    horaires: {...},
+    images: [...],
+    coordonnees: { lat: ..., lng: ... }
+  }
+  // ... autres centres
+]
+```
+
+#### 7. **Composants UI Spécifiques**
+
+**Composants à développer :**
+- `PricingTable` : Tableau tarifs avec colonnes normales/promos
+- `ServiceSelector` : Sélecteur de services par zone corporelle
+- `CentreLocator` : Carte avec géolocalisation des centres
+- `BookingCalendar` : Calendrier de réservation interactif
+- `TreatmentProcess` : Timeline du processus de traitement
+- `BeforeAfterGallery` : Galerie avant/après avec filtres
+- `FAQ` : Accordéon avec questions fréquentes par service
+- `TestimonialCarousel` : Carrousel d'avis clients avec étoiles
+
+#### 8. **Design System**
+
+**Palette de couleurs :**
+- Or/Bronze : `#B8860B` (couleur principale)
+- Bleu ciel : `#87CEEB` (accents)
+- Blanc : `#FFFFFF` (backgrounds)
+- Gris foncé : `#2D2D2D` (textes)
+- Rouge : `#DC2626` (promotions)
+
+**Typography :**
+- Titres : Police élégante (Playfair Display ou similaire)
+- Corps de texte : Police lisible (Inter ou similaire)
+- Hiérarchie claire avec tailles définies
+
+#### 9. **Animations GSAP Spécifiques**
+
+**Micro-animations :**
+- Parallax subtil sur hero sections
+- Révélation progressive des tarifs au scroll
+- Hover effects sur cartes de services
+- Transition fluide entre pages
+- Loading animation pour le calendrier
+- Animation des statistiques (compteurs)
+
+#### 10. **SEO et Performance**
+
+**Optimisations requises :**
+- Pages dédiées par zone corporelle pour SEO local
+- Schema markup pour centre médical
+- Meta descriptions optimisées
+- Images WebP avec fallbacks
+- Lazy loading intelligent
+- Core Web Vitals optimisés
+
+#### 11. **Fonctionnalités Business**
+
+**Newsletter et Marketing :**
+- Inscription newsletter avec checkbox RGPD
+- Pop-up de première consultation gratuite
+- Système de codes promo
+- Tracking des conversions
+- Intégration Google Analytics/Tag Manager
+
+**Dashboard Admin (optionnel) :**
+- Gestion des créneaux par centre
+- Suivi des réservations
+- Gestion des tarifs et promotions
+- Statistiques de fréquentation
+
+### Livrables Finaux :
+
+1. **Site web complet** avec toutes les pages fonctionnelles
+2. **Système de réservation** opérationnel
+3. **Interface d'administration** basique
+4. **Documentation technique** complète
+5. **Guide de déploiement** et maintenance
+6. **Formation** pour la gestion du contenu
+
+**Note Cruciale :** Le site doit reproduire l'expérience utilisateur premium de Maison du Laser tout en créant une identité visuelle unique. L'accent doit être mis sur la conversion (réservations) et la crédibilité médicale.
