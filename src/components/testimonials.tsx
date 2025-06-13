@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 // Simuler l'icône Star
 const Star = ({ className, filled = false }: any) => (
   <div
-    className={`${className} ${filled ? "text-amber-400" : "text-gray-300"}`}>
+    className={`${className} ${filled ? "text-purple-400" : "text-gray-300"}`}>
     ★
   </div>
 );
@@ -115,21 +115,21 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full mb-6 shadow-lg">
-            <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
               <Star
                 className="w-5 h-5 text-white"
                 filled
               />
             </div>
           </div>
-          <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mb-6"></div>
-          <h2 className="font-bold text-3xl text-amber-600 mb-4">
-            LES AVIS DE NOS PATIENT.E.S
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto mb-6"></div>
+          <h2 className="font-bold text-3xl bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-4">
+            LES AVIS DE NOS PATIENTES
           </h2>
         </div>
 
@@ -138,18 +138,18 @@ export default function Testimonials() {
           {/* Navigation Buttons */}
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 group border border-gray-200"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-purple-50 transition-colors duration-300 group border border-purple-200"
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}>
-            <ChevronLeft className="w-6 h-6 text-gray-600 group-hover:text-amber-600 font-bold text-2xl" />
+            <ChevronLeft className="w-6 h-6 text-gray-600 group-hover:text-purple-600 font-bold text-2xl" />
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 group border border-gray-200"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-purple-50 transition-colors duration-300 group border border-purple-200"
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}>
-            <ChevronRight className="w-6 h-6 text-gray-600 group-hover:text-amber-600 font-bold text-2xl" />
+            <ChevronRight className="w-6 h-6 text-gray-600 group-hover:text-purple-600 font-bold text-2xl" />
           </button>
 
           {/* Testimonials Container */}
@@ -166,9 +166,9 @@ export default function Testimonials() {
                   {group.map((testimonial) => (
                     <div
                       key={testimonial.id}
-                      className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 relative">
+                      className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 relative group hover:border-purple-300">
                       {/* Quote icon */}
-                      <div className="absolute top-4 right-4 text-4xl text-amber-200 font-serif">
+                      <div className="absolute top-4 right-4 text-4xl text-purple-200 font-serif group-hover:text-purple-300 transition-colors duration-300">
                         "
                       </div>
 
@@ -179,7 +179,7 @@ export default function Testimonials() {
 
                         {/* Author info */}
                         <div className="flex items-center space-x-4">
-                          <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center shadow-md">
+                          <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300">
                             <span className="text-lg font-bold text-white">
                               {testimonial.initial}
                             </span>
@@ -193,7 +193,7 @@ export default function Testimonials() {
                                 {[...Array(testimonial.rating)].map((_, i) => (
                                   <Star
                                     key={i}
-                                    className="w-4 h-4 text-amber-400"
+                                    className="w-4 h-4 text-purple-400"
                                     filled
                                   />
                                 ))}
@@ -220,8 +220,8 @@ export default function Testimonials() {
                 onClick={() => goToSlide(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? "bg-amber-600 scale-125"
-                    : "bg-gray-300 hover:bg-amber-400"
+                    ? "bg-gradient-to-r from-purple-600 to-pink-500 scale-125"
+                    : "bg-gray-300 hover:bg-purple-400"
                 }`}
                 onMouseEnter={() => setIsAutoPlaying(false)}
                 onMouseLeave={() => setIsAutoPlaying(true)}
@@ -233,13 +233,50 @@ export default function Testimonials() {
           <div className="mt-6 max-w-md mx-auto">
             <div className="w-full bg-gray-200 rounded-full h-1">
               <div
-                className="bg-amber-600 h-1 rounded-full transition-all duration-500"
+                className="bg-gradient-to-r from-purple-600 to-pink-500 h-1 rounded-full transition-all duration-500"
                 style={{
                   width: `${
                     ((currentIndex + 1) / groupedTestimonials.length) * 100
                   }%`,
                 }}></div>
             </div>
+          </div>
+        </div>
+
+        {/* Statistics Section */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
+          <div className="text-center bg-white p-6 rounded-lg shadow-md border border-purple-100">
+            <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-2">
+              5.0
+            </div>
+            <div className="text-gray-600 text-sm">Note moyenne</div>
+            <div className="flex justify-center mt-2">
+              {[...Array(5)].map((_, i) => (
+                <Star
+                  key={i}
+                  className="w-4 h-4 text-purple-400"
+                  filled
+                />
+              ))}
+            </div>
+          </div>
+          <div className="text-center bg-white p-6 rounded-lg shadow-md border border-purple-100">
+            <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-2">
+              500+
+            </div>
+            <div className="text-gray-600 text-sm">Avis clients</div>
+          </div>
+          <div className="text-center bg-white p-6 rounded-lg shadow-md border border-purple-100">
+            <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-2">
+              98%
+            </div>
+            <div className="text-gray-600 text-sm">Satisfaction</div>
+          </div>
+          <div className="text-center bg-white p-6 rounded-lg shadow-md border border-purple-100">
+            <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-2">
+              10k+
+            </div>
+            <div className="text-gray-600 text-sm">Clients traités</div>
           </div>
         </div>
       </div>

@@ -28,12 +28,11 @@ export default function Header() {
 
   const navItems = [
     // { label: "N°1 du laser", href: "/" },
-    { label: "N°1 du laser", href: "/about" },
+    { label: "Qui somme nous", href: "/about" },
+    { label: "Pour Quoi choisir LBC", href: "/machines" },
     { label: "Épilation laser", href: "/services" },
-    { label: "Nos machines", href: "/machines" },
+
     { label: "Tarifs", href: "/tarifs" },
-    // { label: "Nos centres", href: "/centres" },
-    { label: "Actus", href: "/blogs" },
     { label: "Contact", href: "/contact" },
   ];
 

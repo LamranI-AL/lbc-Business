@@ -2,24 +2,51 @@
 
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  Award,
-  UserCheck,
-  Cog,
-  GraduationCap,
-  Home,
-  Shield,
-  CheckCircle,
-  MapPin,
-} from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import React from "react";
+
+// Simuler les icônes
+const Award = ({ className }: any) => (
+  <div className={`${className} font-bold`}>🏆</div>
+);
+const UserCheck = ({ className }: any) => (
+  <div className={`${className} font-bold`}>👤</div>
+);
+const Cog = ({ className }: any) => (
+  <div className={`${className} font-bold`}>⚙️</div>
+);
+const GraduationCap = ({ className }: any) => (
+  <div className={`${className} font-bold`}>🎓</div>
+);
+const Home = ({ className }: any) => (
+  <div className={`${className} font-bold`}>🏠</div>
+);
+const Shield = ({ className }: any) => (
+  <div className={`${className} font-bold`}>🛡️</div>
+);
+const CheckCircle = ({ className }: any) => (
+  <div className={`${className} font-bold`}>✓</div>
+);
+const MapPin = ({ className }: any) => (
+  <div className={`${className} font-bold`}>📍</div>
+);
+
+// Simuler le composant Button
+const Button = ({ children, className, onClick }: any) => (
+  <button
+    className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${className}`}
+    onClick={onClick}>
+    {children}
+  </button>
+);
 
 export default function Services() {
-  const router = useRouter();
   const scrollToPricing = () => {
-    router.push("/pricing");
+    console.log("Navigation vers /pricing");
+  };
+
+  const scrollToAbout = () => {
+    console.log("Navigation vers /about");
   };
 
   const benefits = [
@@ -41,13 +68,13 @@ export default function Services() {
         className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gold-100 rounded-full mb-6">
-              <div className="w-8 h-8 bg-gold-500 rounded-full"></div>
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full mb-6">
+              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full"></div>
             </div>
-            <h2 className="font-bold text-3xl text-gold-500 mb-4">
+            <h2 className="font-bold text-3xl bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-4">
               Centre médical d'épilation Laser Body Center
             </h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
+            <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
               Chez Laser Body Center, nous utilisons exclusivement les lasers
               Candela, la référence mondiale en épilation durable. Contrairement
               aux autres technologies (laser diode et lumière pulsée), le
@@ -61,10 +88,11 @@ export default function Services() {
             <div>
               <Image
                 src="/epilation_laser.jpg"
-                alt="Advanced laser equipment in medical setting"
-                width={500}
+                alt="Équipement laser médical avancé"
+                className="rounded-2xl shadow-xl w-full h-auto object-cover border-2 border-purple-100"
+                style={{ height: "400px" }}
                 height={500}
-                className="rounded-2xl shadow-lg w-full h-auto"
+                width={500}
               />
             </div>
 
@@ -73,11 +101,11 @@ export default function Services() {
                 LASER BODY CENTRE : CONFORT, EFFICACITÉ ET SUIVI MÉDICAL ASSURÉS
               </h3>
 
-              <div className="space-y-4 text-gray-600">
+              <div className="space-y-4 text-gray-600 text-lg leading-relaxed">
                 <p>
                   Maison du Laser, les experts du laser médical, le vrai. Depuis
                   plusieurs années, nous proposons à nos patient.e.s les
-                  meilleures solutions en matière d’épilation laser.
+                  meilleures solutions en matière d'épilation laser.
                 </p>
 
                 <p>
@@ -88,17 +116,15 @@ export default function Services() {
                 </p>
 
                 <p>
-                  À Laser body centre nous nous devons de respecter des tests
-                  efficaces, performants et sécurisés, votre peau est en de
-                  bonnes mains.
+                  À Laser body centre nous nous devons de respecter des
+                  standards efficaces, performants et sécurisés, votre peau est
+                  en de bonnes mains.
                 </p>
               </div>
 
               <Button
-                className="bg-gold-500 hover:bg-gold-600 text-white font-semibold"
-                onClick={() => {
-                  router.push("/about");
-                }}>
+                className="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+                onClick={scrollToAbout}>
                 EN SAVOIR PLUS
               </Button>
             </div>
@@ -107,14 +133,14 @@ export default function Services() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-beige-50">
+      <section className="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gold-100 rounded-full mb-6">
-              <div className="w-8 h-8 bg-gold-500 rounded-full"></div>
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full mb-6">
+              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full"></div>
             </div>
-            <h2 className="font-bold text-3xl text-gold-500 mb-4">
-              POURQUOI CHOISIR LA MAISON DU LASER BOULEVARD VOLTAIRE 75011
+            <h2 className="font-bold text-3xl bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-4">
+              POURQUOI CHOISIR LASER BODY CENTER
             </h2>
           </div>
 
@@ -124,11 +150,11 @@ export default function Services() {
               return (
                 <div
                   key={index}
-                  className="text-center space-y-4">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gold-100 rounded-full">
-                    <Icon className="w-6 h-6 text-gold-500" />
+                  className="text-center space-y-4 bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 group hover:border-purple-300">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full group-hover:from-purple-200 group-hover:to-pink-200 transition-colors duration-300">
+                    <Icon className="w-6 h-6 text-purple-600" />
                   </div>
-                  <h3 className="font-semibold text-gray-800 text-sm">
+                  <h3 className="font-semibold text-gray-800 text-sm leading-tight">
                     {benefit.title}
                   </h3>
                 </div>
@@ -138,11 +164,11 @@ export default function Services() {
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h3 className="font-bold text-2xl text-gold-500">
+              <h3 className="font-bold text-2xl bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
                 QUEL EST LE PRIX D'UNE ÉPILATION AU LASER ?
               </h3>
 
-              <div className="space-y-4 text-gray-600">
+              <div className="space-y-4 text-gray-600 text-lg leading-relaxed">
                 <p>
                   Concernant le prix et techniques d'épilation notamment sur la
                   zone d'épilation, par lumière pulsée, le prix d'une séance
@@ -153,23 +179,27 @@ export default function Services() {
 
                 <p>
                   Pour répondre aux questions, découvrez tous nos forfaits par
-                  zone d'épilation et ne vous lancez pas dans la voie
-                  d'épilation de votre épargne de rôde et de réduction.
+                  zone d'épilation adaptés à votre budget et vos besoins.
+                  L'épilation laser représente un investissement rentable sur le
+                  long terme.
                 </p>
               </div>
 
               <Button
-                className="bg-gold-500 hover:bg-gold-600 text-white font-semibold"
+                className="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
                 onClick={scrollToPricing}>
                 NOS TARIFS
               </Button>
             </div>
 
             <div>
-              <img
+              <Image
                 src="/epilation_laser1.jpg"
-                alt="Professional laser treatment session"
-                className="rounded-2xl shadow-lg w-full h-auto"
+                alt="Traitement laser professionnel"
+                className="rounded-2xl shadow-xl w-full h-auto object-cover border-2 border-purple-100"
+                style={{ height: "400px" }}
+                height={500}
+                width={500}
               />
             </div>
           </div>
@@ -177,87 +207,122 @@ export default function Services() {
       </section>
 
       {/* Consultation CTA */}
-      {/* <section className="py-20 bg-gradient-to-r from-gold-500 to-gold-600">
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-white space-y-6">
-              <h2 className="font-bold text-gold-300 text-3xl">
-                VOTRE PREMIÈRE CONSULTATION EST OFFERTE !
-              </h2>
-
-              <p className="text-lg text-stone-500 opacity-90">
-                Un premier rendez-vous avec une consultation médicale
-                obligatoire. Lors de cette consultation de diagnostic, nous
-                déterminerons avec vous les protocoles appropriés et les tarifs
-                en fonction de la zone de votre choix pour notre épilation
-                permanente.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="bg-white bg-gold-400 text-gold-500 hover:bg-gray-100 font-semibold">
-                  APPELEZ-MOI ! J'ACCEPTE*
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-white text-white hover:bg-white hover:text-gold-500 font-semibold">
-                  PRENEZ RDV EN LIGNE
-                </Button>
-              </div>
-            </div>
-
-            <div className="relative">
+          <div className="grid lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-2xl bg-white">
+            {/* Right side - Image */}
+            <div className="relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 opacity-20"></div>
               <img
-                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=700"
-                alt="Confident woman after successful treatment"
-                className="rounded-2xl w-full h-auto"
+                src="/woman.jpg"
+                alt="Femme souriante et confiante"
+                className="w-full h-full object-cover object-center"
+                style={{ minHeight: "500px" }}
               />
             </div>
-          </div>
-        </div>
-      </section> */}
 
-      <section className="py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-2xl">
-            {/* Right side - Image */}
-            <div className="bg-gradient-to-br from-gold-400 to-gold-600 relative">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <img
-                  // src="https://images.pexels.com/photos/3985360/pexels-photo-3985360.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop&fp-y=0.3"
-                  src="/woman.jpg"
-                  alt="Femme souriante en débardeur turquoise"
-                  className="w-full h-full object-cover object-center"
-                />
-              </div>
-            </div>
             {/* Left side - Content */}
             <div className="bg-white p-8 lg:p-12 flex flex-col justify-center">
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight">
                 VOTRE PREMIÈRE CONSULTATION EST
-                <span className="text-gold-500 block">OFFERTE !</span>
+                <span className="bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent block">
+                  OFFERTE !
+                </span>
               </h2>
 
               <p className="text-gray-600 text-lg leading-relaxed mb-8">
                 Il s'agit d'une consultation médicale obligatoire. Cette
                 consultation de diagnostic permettra à l'une de nos spécialistes
-                de vous proposer des conseils et un suivi personnalisés. Venez
-                donc vous sera offerte à la suite de cette première consultation
-                médicale. Cette consultation est offerte et ne vous engage à
-                rien.
+                de vous proposer des conseils et un suivi personnalisés. Votre
+                devis vous sera délivré à la suite de cette première
+                consultation médicale. Cette consultation est offerte et ne vous
+                engage à rien.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300">
+              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                <button className="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 shadow-md hover:shadow-lg">
                   RAPPELEZ-MOI ! (GRATUIT)
                 </button>
-                <button className="bg-gradient-to-r from-purple-600 to-yellow-500 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                <button className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 shadow-md transform hover:scale-105">
                   PRENDRE RDV EN LIGNE
                 </button>
               </div>
+
+              {/* Badges de confiance avec thème violet */}
+              <div className="flex items-center justify-center space-x-6 pt-6 border-t border-gray-100">
+                <div className="flex items-center space-x-2 text-gray-600">
+                  <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-lg">
+                    <span className="text-sm font-bold text-white">✓</span>
+                  </div>
+                  <span className="text-sm font-medium">FDA Approuvé</span>
+                </div>
+                <div className="flex items-center space-x-2 text-gray-600">
+                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                    <span className="text-sm font-bold text-white">⚡</span>
+                  </div>
+                  <span className="text-sm font-medium">
+                    Résultats garantis
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2 text-gray-600">
+                  <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center shadow-lg">
+                    <span className="text-sm font-bold text-white">★</span>
+                  </div>
+                  <span className="text-sm font-medium">+10k clients</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section bonus - Avantages du laser Candela */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-bold text-3xl bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-4">
+              TECHNOLOGIE CANDELA - LA DIFFÉRENCE
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              Découvrez pourquoi le laser Candela est la référence mondiale
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-xl shadow-lg border border-purple-100">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mb-4">
+                <span className="text-white font-bold text-xl">90%</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-3 text-lg">
+                Efficacité Prouvée
+              </h3>
+              <p className="text-gray-600">
+                90-95% de destruction folliculaire après une série complète
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-xl shadow-lg border border-purple-100">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mb-4">
+                <span className="text-white font-bold text-xl">2</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-3 text-lg">
+                Double Longueur d'Onde
+              </h3>
+              <p className="text-gray-600">
+                Alexandrite (755nm) + Nd:YAG (1064nm) pour tous types de peaux
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-xl shadow-lg border border-purple-100">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mb-4">
+                <span className="text-white font-bold text-xl">5+</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-3 text-lg">
+                Résultats Durables
+              </h3>
+              <p className="text-gray-600">
+                75% des patients sans repousse après 5 ans (études cliniques)
+              </p>
             </div>
           </div>
         </div>

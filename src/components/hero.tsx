@@ -255,7 +255,7 @@ export default function HeroSection() {
             repeat: Infinity,
             ease: "easeInOut",
           }}>
-          LASER BODY CENTRE
+          LASER BODY CENTER
         </motion.h2>
 
         {/* Sous-titre avec informations techniques */}
