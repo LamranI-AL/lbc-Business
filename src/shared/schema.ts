@@ -1,4 +1,13 @@
-import { pgTable, text, serial, integer, decimal, boolean } from "drizzle-orm/pg-core";
+/** @format */
+
+import {
+  pgTable,
+  text,
+  serial,
+  integer,
+  decimal,
+  boolean,
+} from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -64,7 +73,3 @@ export type Center = typeof centers.$inferSelect;
 export type Treatment = typeof treatments.$inferSelect;
 export type Testimonial = typeof testimonials.$inferSelect;
 export type Appointment = typeof appointments.$inferSelect;
-export type InsertCenter = z.infer<typeof insertCenterSchema>;
-export type InsertTreatment = z.infer<typeof insertTreatmentSchema>;
-export type InsertTestimonial = z.infer<typeof insertTestimonialSchema>;
-export type InsertAppointment = z.infer<typeof insertAppointmentSchema>;
