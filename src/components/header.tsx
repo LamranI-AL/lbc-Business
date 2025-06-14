@@ -29,8 +29,9 @@ export default function Header() {
   const navItems = [
     // { label: "N°1 du laser", href: "/" },
     { label: "Qui somme nous", href: "/about" },
-    { label: "Pour Quoi choisir LBC", href: "/machines" },
+    { label: "Pour Quoi choisir LBC", href: "/pourquoi-lbc" },
     { label: "Épilation laser", href: "/epilation-laser" },
+    { label: "Le laser pour mycose", href: "/mycose" },
 
     { label: "Tarifs", href: "/tarifs" },
     { label: "Contact", href: "/contact" },
@@ -213,7 +214,7 @@ export default function Header() {
             </div>
 
             {/* Bouton RDV principal */}
-            <Link href="/contact">
+            <Link href="/rendz-vous">
               <Button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold px-6 py-5 rounded-sm shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5">
                 <Calendar className="w-4 h-4 mr-2" />
                 Prendre RDV

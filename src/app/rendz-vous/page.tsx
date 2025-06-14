@@ -1,9 +1,14 @@
 /** @format */
 
+import CentresList from "@/components/centres/list";
 import React from "react";
 
 function page() {
-  return <div>booking</div>;
+  return (
+    <div>
+      <CentresList />
+    </div>
+  );
 }
 
 export default page;

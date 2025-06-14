@@ -2,6 +2,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
 
 export default function HeroSection() {
   const [currentMonth, setCurrentMonth] = useState(6); // Juillet (index 6)
@@ -303,7 +304,9 @@ export default function HeroSection() {
             transition={{ type: "spring", stiffness: 300 }}>
             <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <span className="relative z-10 flex items-center space-x-2">
-              <span>PRENDRE RENDEZ-VOUS</span>
+              <Link href="/rendz-vous">
+                <span>PRENDRE RENDEZ-VOUS</span>
+              </Link>
               <motion.div
                 className="w-2 h-2 bg-white rounded-full"
                 animate={{ scale: [1, 1.5, 1] }}
@@ -322,7 +325,9 @@ export default function HeroSection() {
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 300 }}>
             <span className="flex items-center space-x-2">
-              <span>CONSULTATION </span>
+              <Link href="/contact">
+                <span>CONSULTATION</span>
+              </Link>
               <motion.div
                 className="w-4 h-4 border-2 border-white rounded-full"
                 animate={{ rotate: 360 }}

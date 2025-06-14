@@ -72,7 +72,7 @@ export default function Services() {
               <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full"></div>
             </div>
             <h2 className="font-bold text-3xl bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-4">
-              Centre médical d'épilation Laser Body Center
+              Center médical d'épilation Laser Body Center
             </h2>
             <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
               Chez Laser Body Center, nous utilisons exclusivement les lasers
@@ -98,13 +98,13 @@ export default function Services() {
 
             <div className="space-y-6">
               <h3 className="font-bold text-2xl text-gray-800 mb-6">
-                LASER BODY CENTRE : CONFORT, EFFICACITÉ ET SUIVI MÉDICAL ASSURÉS
+                LASER BODY CENTER : CONFORT, EFFICACITÉ ET SUIVI MÉDICAL ASSURÉS
               </h3>
 
               <div className="space-y-4 text-gray-600 text-lg leading-relaxed">
                 <p>
-                  Maison du Laser, les experts du laser médical, le vrai. Depuis
-                  plusieurs années, nous proposons à nos patient.e.s les
+                  Laser Body Center, les experts du laser médical, le vrai.
+                  Depuis plusieurs années, nous proposons à nos patient.e.s les
                   meilleures solutions en matière d'épilation laser.
                 </p>
 
