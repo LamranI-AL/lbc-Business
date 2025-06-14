@@ -29,9 +29,9 @@ export default function Header() {
   const navItems = [
     // { label: "N°1 du laser", href: "/" },
     { label: "Qui somme nous", href: "/about" },
-    { label: "Pour Quoi choisir LBC", href: "/pourquoi-lbc" },
-    { label: "Épilation laser", href: "/epilation-laser" },
-    { label: "Le laser pour mycose", href: "/mycose" },
+    { label: "Pour Quoi choisir Laser Body Center", href: "/pourquoi-lbc" },
+    { label: "Épilation Laser", href: "/epilation-laser" },
+    { label: "Le laser pour Mycose", href: "/mycose" },
 
     { label: "Tarifs", href: "/tarifs" },
     { label: "Contact", href: "/contact" },

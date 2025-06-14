@@ -48,11 +48,12 @@ export default function EpilationLaserPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section Ultra Premium */}
-      <section className="pt-24 pb-20 bg-gradient-to-br from-slate-900 via-purple-900 to-gray-900 text-white relative overflow-hidden">
+      <section className="pt-24 pb-20 bg-gradient-to-br from-gray-800 via-gray-700 to-slate-800 text-white relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-purple-600/20 to-transparent"></div>
-          <div className="absolute bottom-0 right-0 w-1/2 h-2/3 bg-gradient-to-l from-pink-600/10 to-transparent"></div>
+          <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-gray-500/20 to-transparent"></div>
+          <div className="absolute bottom-0 right-0 w-1/2 h-2/3 bg-gradient-to-l from-gray-400/10 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-600/5 via-transparent to-gray-500/5"></div>
         </div>
 
         <motion.div
@@ -64,8 +65,8 @@ export default function EpilationLaserPage() {
             {/* Left Content */}
             <div className="space-y-8">
               <motion.div variants={itemVariants as any}>
-                <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-gray-300/30">
+                  <div className="w-2 h-2 bg-gray-300 rounded-full animate-pulse"></div>
                   <span className="text-sm font-medium">
                     Centre Médical • Technologie FDA
                   </span>
@@ -73,7 +74,7 @@ export default function EpilationLaserPage() {
 
                 <h1 className="text-5xl lg:text-7xl font-bold leading-tight mb-6">
                   ÉPILATION LASER
-                  <span className="block text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text">
+                  <span className="block text-transparent bg-gradient-to-r from-gray-300 to-gray-400 bg-clip-text">
                     DÉFINITIVE
                   </span>
                 </h1>
@@ -91,24 +92,24 @@ export default function EpilationLaserPage() {
                 className="space-y-4"
                 variants={itemVariants as any}>
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
-                    <CheckCircle className="w-6 h-6 text-green-400" />
+                  <div className="w-12 h-12 bg-gray-500/20 rounded-full flex items-center justify-center">
+                    <CheckCircle className="w-6 h-6 text-gray-300" />
                   </div>
                   <span className="text-lg">
                     Consultation médicale gratuite
                   </span>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
-                    <Shield className="w-6 h-6 text-blue-400" />
+                  <div className="w-12 h-12 bg-gray-600/20 rounded-full flex items-center justify-center">
+                    <Shield className="w-6 h-6 text-gray-400" />
                   </div>
                   <span className="text-lg">
                     FDA Approuvé & Certifié médical
                   </span>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center">
-                    <Award className="w-6 h-6 text-purple-400" />
+                  <div className="w-12 h-12 bg-gray-500/20 rounded-full flex items-center justify-center">
+                    <Award className="w-6 h-6 text-gray-300" />
                   </div>
                   <span className="text-lg">
                     15+ années d'expertise reconnue
@@ -122,7 +123,7 @@ export default function EpilationLaserPage() {
                 <button className="bg-white text-gray-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl">
                   PRENDRE RENDEZ-VOUS
                 </button>
-                <button className="border-2 border-white/30 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all duration-300">
+                <button className="border-2 border-gray-300/40 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all duration-300">
                   01 84 80 80 27
                 </button>
               </motion.div>
@@ -132,9 +133,9 @@ export default function EpilationLaserPage() {
             <motion.div
               className="relative"
               variants={itemVariants as any}>
-              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-3xl p-12 border border-white/20">
+              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-3xl p-12 border border-gray-300/20">
                 <div className="text-center space-y-8">
-                  <div className="w-32 h-32 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full mx-auto flex items-center justify-center shadow-2xl">
+                  <div className="w-32 h-32 bg-gradient-to-br from-gray-500 to-gray-600 rounded-full mx-auto flex items-center justify-center shadow-2xl">
                     <Microscope className="w-16 h-16 text-white" />
                   </div>
 
@@ -150,13 +151,13 @@ export default function EpilationLaserPage() {
 
                   <div className="grid grid-cols-2 gap-6 pt-8">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-purple-400 mb-2">
+                      <div className="text-3xl font-bold text-gray-300 mb-2">
                         755nm
                       </div>
                       <div className="text-sm text-gray-400">Alexandrite</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-pink-400 mb-2">
+                      <div className="text-3xl font-bold text-gray-400 mb-2">
                         1064nm
                       </div>
                       <div className="text-sm text-gray-400">Nd:YAG</div>
@@ -223,7 +224,7 @@ export default function EpilationLaserPage() {
                 className="bg-white rounded-2xl p-8 text-center shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
                 variants={itemVariants as any}
                 whileHover={{ y: -5 }}>
-                <div className="text-4xl font-bold text-transparent bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text mb-3">
+                <div className="text-4xl font-bold text-transparent bg-gradient-to-r from-gray-600 to-gray-700 bg-clip-text mb-3">
                   {stat.number}
                 </div>
                 <div className="font-semibold text-gray-900 mb-1">
@@ -268,14 +269,14 @@ export default function EpilationLaserPage() {
             whileInView="visible"
             viewport={{ once: true }}>
             <motion.div variants={itemVariants as any}>
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-12 border border-purple-100">
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-12 border border-gray-200">
                 <h3 className="text-3xl font-bold text-gray-900 mb-8">
                   Double longueur d'onde
                 </h3>
 
                 <div className="space-y-8">
                   <div className="flex items-start space-x-6">
-                    <div className="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                    <div className="w-16 h-16 bg-gray-600 rounded-2xl flex items-center justify-center flex-shrink-0">
                       <span className="text-white font-bold text-lg">755</span>
                     </div>
                     <div>
@@ -291,7 +292,7 @@ export default function EpilationLaserPage() {
                   </div>
 
                   <div className="flex items-start space-x-6">
-                    <div className="w-16 h-16 bg-pink-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                    <div className="w-16 h-16 bg-gray-700 rounded-2xl flex items-center justify-center flex-shrink-0">
                       <span className="text-white font-bold text-lg">1064</span>
                     </div>
                     <div>
@@ -335,7 +336,7 @@ export default function EpilationLaserPage() {
                   <div
                     key={index}
                     className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 text-center hover:shadow-xl transition-shadow duration-300">
-                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-gray-500 to-gray-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       {feature.icon}
                     </div>
                     <h4 className="font-bold text-gray-900 mb-2">
@@ -419,7 +420,7 @@ export default function EpilationLaserPage() {
                 className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 relative overflow-hidden"
                 variants={itemVariants as any}
                 whileHover={{ y: -5 }}>
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-bl-3xl flex items-center justify-center">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-gray-500 to-gray-600 rounded-bl-3xl flex items-center justify-center">
                   <span className="text-white font-bold text-lg">
                     {phase.step}
                   </span>
@@ -429,7 +430,7 @@ export default function EpilationLaserPage() {
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">
                     {phase.title}
                   </h3>
-                  <p className="text-purple-600 font-semibold mb-6">
+                  <p className="text-gray-600 font-semibold mb-6">
                     {phase.subtitle}
                   </p>
 
@@ -438,7 +439,7 @@ export default function EpilationLaserPage() {
                       <li
                         key={idx}
                         className="flex items-start space-x-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="w-5 h-5 text-gray-500 mt-0.5 flex-shrink-0" />
                         <span className="text-gray-600">{point}</span>
                       </li>
                     ))}
