@@ -30,7 +30,7 @@ export default function Header() {
     // { label: "N°1 du laser", href: "/" },
     { label: "Qui somme nous", href: "/about" },
     { label: "Pour Quoi choisir LBC", href: "/machines" },
-    { label: "Épilation laser", href: "/services" },
+    { label: "Épilation laser", href: "/epilation-laser" },
 
     { label: "Tarifs", href: "/tarifs" },
     { label: "Contact", href: "/contact" },

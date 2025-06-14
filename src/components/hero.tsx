@@ -2,11 +2,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Link from "next/link";
 
 export default function HeroSection() {
   const [currentMonth, setCurrentMonth] = useState(6); // Juillet (index 6)
-  // Correction: utilisation des noms complets des mois pour éviter les doublons
   const months = [
     { short: "J", full: "Janvier", id: "jan" },
     { short: "F", full: "Février", id: "feb" },
@@ -28,39 +26,39 @@ export default function HeroSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentMonth((prev) => (prev + 1) % 12);
-    }, 2000);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
-  // Variants pour les animations
+  // Variants pour animations sophistiquées
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
+    hidden: { y: 60, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut",
+        ease: [0.25, 0.46, 0.45, 0.94], // Cubic bezier easing
       },
     },
   };
 
   const floatingVariants = {
     animate: {
-      y: [-10, 10, -10],
+      y: [-8, 8, -8],
       transition: {
-        duration: 3,
+        duration: 4,
         repeat: Infinity,
         ease: "easeInOut",
       },
@@ -68,53 +66,45 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background avec parallax - Images réelles d'épilation laser */}
-      <motion.div
-        className="absolute inset-0"
-        style={{ y }}>
-        {/* Image principale - Centre d'épilation laser professionnel */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url('/epilation_laser.jpg')`,
-          }}
-        />
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br p-20 from-slate-900 via-purple-900 to-pink-900">
+      {/* Background Pattern Sophistiqué */}
+      <div className="absolute inset-0 p-20">
+        {/* Geometric Patterns */}
+        <div className="absolute inset-0 opacity-10 ">
+          <div className="absolute top-0 left-0 w-100 h-100 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+          <div
+            className="absolute top-0 right-0 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"
+            style={{ animationDelay: "2s" }}></div>
+          <div
+            className="absolute bottom-0 left-1/2 w-96 h-96 bg-violet-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"
+            style={{ animationDelay: "4s" }}></div>
+        </div>
 
-        {/* Superposition - Traitement laser en action */}
-        <div className="absolute inset-0">
-          <motion.div
-            className="absolute top-0 right-0 w-1/3 h-1/2 bg-cover bg-center opacity-25"
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 0.25 }}
-            transition={{ duration: 1.5, delay: 0.5 }}
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div
+            className="w-full h-full"
             style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80')`,
-              clipPath: "polygon(100% 0%, 100% 100%, 70% 100%)",
-            }}
-          />
-          <motion.div
-            className="absolute bottom-0 left-0 w-1/4 h-1/3 bg-cover bg-center opacity-20"
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ x: 0, opacity: 0.2 }}
-            transition={{ duration: 1.5, delay: 0.7 }}
-            style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80')`,
-              clipPath: "polygon(0% 0%, 30% 100%, 0% 100%)",
+              backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.3) 1px, transparent 0)`,
+              backgroundSize: "40px 40px",
             }}
           />
         </div>
 
-        {/* Overlay dégradé optimisé pour l'épilation laser */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-purple-800/50 to-amber-600/40"></div>
-      </motion.div>
+        {/* Gradient Overlay Premium */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-purple-900/60 to-pink-900/70"></div>
+      </div>
 
-      {/* Particules dorées animées avec effet laser */}
+      {/* Particules Élégantes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(25)].map((_, i) => (
           <motion.div
             key={`particle-${i}`}
-            className="absolute w-2 h-2 bg-amber-400 rounded-full opacity-70"
+            className="absolute w-1 h-1 rounded-full"
+            style={{
+              background:
+                i % 3 === 0 ? "#9333EA" : i % 3 === 1 ? "#EC4899" : "#8B5CF6",
+            }}
             initial={{
               x:
                 Math.random() *
@@ -123,6 +113,7 @@ export default function HeroSection() {
                 Math.random() *
                 (typeof window !== "undefined" ? window.innerHeight : 800),
               scale: 0,
+              opacity: 0,
             }}
             animate={{
               y: [
@@ -130,48 +121,40 @@ export default function HeroSection() {
                 Math.random() *
                   (typeof window !== "undefined" ? window.innerHeight : 800),
               ],
-              scale: [0, 1, 0],
-              opacity: [0.7, 1, 0.7],
+              scale: [0, Math.random() * 1.5 + 0.5, 0],
+              opacity: [0, 0.8, 0],
             }}
             transition={{
-              duration: 4 + Math.random() * 3,
+              duration: 8 + Math.random() * 4,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: Math.random() * 2,
-            }}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              delay: Math.random() * 3,
             }}
           />
         ))}
       </div>
 
-      {/* Logo décoratif avec thème laser */}
+      {/* Logo Premium */}
       <motion.div
-        className="absolute top-10 left-10 z-10"
+        className="absolute top-8 left-8 z-20"
         initial={{ scale: 0, rotate: -180, opacity: 0 }}
         animate={{ scale: 1, rotate: 0, opacity: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        whileHover={{ scale: 1.1, rotate: 45 }}>
-        <div className="w-24 h-24 flex items-center justify-center">
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        whileHover={{ scale: 1.1 }}>
+        <div className="w-20 h-20 flex items-center justify-center">
           <motion.div
-            className="w-16 h-16 border-4 border-amber-400 rounded-full flex items-center justify-center shadow-lg shadow-amber-400/50 bg-gradient-to-br from-amber-400/20 to-yellow-500/20 backdrop-blur-sm"
+            className="w-16 h-16 border-3 border-white/30 rounded-full flex items-center justify-center shadow-2xl backdrop-blur-sm bg-white/10"
             animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}>
             <motion.div
-              className="w-8 h-8 border-2 border-amber-300 rounded-full flex items-center justify-center bg-gradient-to-br from-amber-300/30 to-yellow-400/30"
+              className="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center shadow-lg"
               animate={{ rotate: -360 }}
-              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}>
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
               <motion.div
-                className="w-3 h-3 bg-amber-400 rounded-full shadow-lg shadow-amber-400/80"
+                className="w-4 h-4 bg-white rounded-full"
                 animate={{
-                  scale: [1, 1.3, 1],
-                  boxShadow: [
-                    "0 0 10px rgba(251, 191, 36, 0.8)",
-                    "0 0 20px rgba(251, 191, 36, 1)",
-                    "0 0 10px rgba(251, 191, 36, 0.8)",
-                  ],
+                  scale: [1, 1.2, 1],
+                  opacity: [1, 0.8, 1],
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
@@ -180,222 +163,215 @@ export default function HeroSection() {
         </div>
       </motion.div>
 
-      {/* Contenu principal avec thème épilation laser */}
+      {/* Contenu Principal */}
       <motion.div
-        className="relative z-10 text-center text-white max-w-4xl mx-auto px-4"
+        className="relative z-10 text-center text-white max-w-6xl mx-auto px-6"
         variants={containerVariants}
         initial="hidden"
         animate="visible">
-        {/* Prix principal avec effet laser */}
+        {/* Badge Premium */}
         <motion.div
-          className="text-8xl md:text-9xl font-bold mb-4 relative"
+          className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-8 border border-white/20"
           variants={itemVariants as any}
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 300 }}>
-          <motion.span
-            className="relative inline-block"
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            style={{
-              filter: "drop-shadow(0 0 20px rgba(251, 191, 36, 0.5))",
-            }}>
-            -50%
-            <motion.div
-              className="absolute -top-4 -right-4 w-8 h-8 bg-amber-400 rounded-full shadow-lg shadow-amber-400/60"
-              animate={{
-                y: [-5, 5, -5],
-                boxShadow: [
-                  "0 0 15px rgba(251, 191, 36, 0.6)",
-                  "0 0 25px rgba(251, 191, 36, 0.8)",
-                  "0 0 15px rgba(251, 191, 36, 0.6)",
-                ],
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <motion.div
-              className="absolute -bottom-2 -left-2 w-4 h-4 bg-yellow-300 rounded-full shadow-lg shadow-yellow-300/60"
-              animate={{
-                scale: [1, 1.3, 1],
-                boxShadow: [
-                  "0 0 10px rgba(253, 224, 71, 0.6)",
-                  "0 0 15px rgba(253, 224, 71, 0.8)",
-                  "0 0 10px rgba(253, 224, 71, 0.6)",
-                ],
-              }}
-              transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
-            />
-          </motion.span>
+          whileHover={{ scale: 1.05, y: -2 }}>
+          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+          <span className="text-sm font-medium text-white/90">
+            ✨ Technologie Laser Candela • FDA Approuvé
+          </span>
         </motion.div>
 
-        {/* Titre principal */}
+        {/* Prix Principal avec Design Épuré */}
+        <motion.div
+          className="relative mb-6"
+          variants={itemVariants as any}
+          whileHover={{ scale: 1.02 }}
+          transition={{ type: "spring", stiffness: 300 }}>
+          <motion.div
+            className="text-8xl md:text-9xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-purple-300 bg-clip-text text-transparent mb-4"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            style={{
+              filter: "drop-shadow(0 0 40px rgba(168, 85, 247, 0.4))",
+            }}>
+            -50%
+          </motion.div>
+
+          {/* Éléments décoratifs modernes */}
+          <motion.div
+            className="absolute -top-6 -right-6 w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full shadow-2xl"
+            animate={{
+              y: [-3, 3, -3],
+              rotate: [0, 180, 360],
+            }}
+            transition={{ duration: 4, repeat: Infinity }}
+          />
+          <motion.div
+            className="absolute -bottom-4 -left-4 w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-400 rounded-full shadow-xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.7, 1, 0.7],
+            }}
+            transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+          />
+        </motion.div>
+
+        {/* Titre Principal Sophistiqué */}
         <motion.h1
-          className="text-2xl md:text-4xl font-light mb-2 tracking-wide"
+          className="text-xl md:text-3xl font-bold mb-2 tracking-widest text-gray-300 uppercase"
           variants={itemVariants as any}>
-          {/* SUR TOUS LES FORFAITS */}
+          LASER BODY CENTER
         </motion.h1>
 
-        {/* Titre épilation laser avec effet brillant laser */}
+        {/* Nom du Centre avec Animation Gradient */}
         <motion.h2
-          className="text-4xl md:text-6xl font-bold mb-4 relative"
+          className="text-4xl md:text-7xl font-bold mb-6 relative"
           variants={itemVariants as any}
           style={{
             background:
-              "linear-gradient(45deg, #fff, #fbbf24, #a855f7, #fbbf24, #fff)",
-            backgroundSize: "400% 400%",
+              "linear-gradient(45deg, #fff, #a855f7, #ec4899, #fff, #a855f7)",
+            backgroundSize: "300% 300%",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            filter: "drop-shadow(0 0 10px rgba(251, 191, 36, 0.3))",
+            filter: "drop-shadow(0 0 20px rgba(168, 85, 247, 0.3))",
           }}
           animate={{
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
           }}
           transition={{
-            duration: 4,
+            duration: 6,
             repeat: Infinity,
             ease: "easeInOut",
           }}>
           LASER BODY CENTER
         </motion.h2>
 
-        {/* Sous-titre avec informations techniques */}
+        {/* Sous-titre Premium */}
         <motion.p
-          className="text-xl md:text-2xl font-light mb-8 text-amber-100"
+          className="text-lg md:text-xl font-light mb-10 text-gray-200 max-w-2xl mx-auto leading-relaxed"
           variants={itemVariants as any}>
-          Technologie FDA • Résultats permanents
+          Centre médical spécialisé • Résultats permanents garantis • Plus de 15
+          ans d'expertise
         </motion.p>
 
-        {/* Indicateurs de mois avec clés uniques */}
+        {/* Indicateurs de Mois Élégants */}
         <motion.div
-          className="flex justify-center space-x-6 mb-8"
+          className="flex justify-center space-x-4 mb-12"
           variants={itemVariants as any}>
           {months.map((month, index) => (
-            <motion.span
-              key={month.id} // Utilisation d'ID unique au lieu de la lettre
-              className={`text-2xl font-bold cursor-pointer transition-all duration-300 ${
+            <motion.div
+              key={month.id}
+              className={`relative w-12 h-12 flex items-center justify-center rounded-lg transition-all duration-500 cursor-pointer ${
                 index === currentMonth
-                  ? "text-amber-400 drop-shadow-lg"
+                  ? "bg-gradient-to-br from-purple-500 to-pink-500 text-white shadow-lg scale-110"
                   : index < currentMonth
-                  ? "text-amber-300"
-                  : "text-white/70"
+                  ? "bg-white/20 text-purple-200 backdrop-blur-sm"
+                  : "bg-white/10 text-gray-400 backdrop-blur-sm"
               }`}
               animate={
                 index === currentMonth
                   ? {
-                      scale: [1, 1.3, 1],
-                      y: [0, -8, 0],
-                      textShadow: [
-                        "0 0 10px rgba(251, 191, 36, 0.8)",
-                        "0 0 20px rgba(251, 191, 36, 1)",
-                        "0 0 10px rgba(251, 191, 36, 0.8)",
+                      scale: [1.1, 1.2, 1.1],
+                      boxShadow: [
+                        "0 0 20px rgba(168, 85, 247, 0.5)",
+                        "0 0 30px rgba(168, 85, 247, 0.8)",
+                        "0 0 20px rgba(168, 85, 247, 0.5)",
                       ],
                     }
                   : {}
               }
-              transition={{ duration: 0.6 }}
-              whileHover={{
-                scale: 1.2,
-                y: -5,
-                textShadow: "0 0 15px rgba(251, 191, 36, 0.9)",
-              }}
+              transition={{ duration: 0.8 }}
+              whileHover={{ scale: 1.15, y: -3 }}
               title={month.full}>
-              {month.short}
-            </motion.span>
-          ))}
-        </motion.div>
-
-        {/* Boutons d'action avec thème laser */}
-        <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          variants={itemVariants as any}>
-          <Link href={"/centres"}>
-            <motion.button
-              className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-colors duration-300 shadow-lg shadow-amber-500/30"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 15px 35px rgba(251, 191, 36, 0.4)",
-                filter: "drop-shadow(0 0 15px rgba(251, 191, 36, 0.6))",
-              }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300 }}>
-              PRENDRE RENDEZ-VOUS
-            </motion.button>
-          </Link>
-          <Link href="/contact">
-            <motion.button
-              className="border-2 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-gray-900 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 shadow-lg shadow-amber-400/20"
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: "rgba(251, 191, 36, 1)",
-                color: "rgba(17, 24, 39, 1)",
-                boxShadow: "0 15px 35px rgba(251, 191, 36, 0.3)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300 }}>
-              CONSULTATION
-            </motion.button>
-          </Link>
-        </motion.div>
-
-        {/* Badges de confiance pour épilation laser */}
-        <motion.div
-          className="flex justify-center items-center space-x-8 mt-8"
-          variants={itemVariants as any}>
-          {[
-            { icon: "✓", text: "FDA Approuvé", color: "text-green-400" },
-            { icon: "⚡", text: "Technologie Laser", color: "text-blue-400" },
-            { icon: "★", text: "+10 000 clients", color: "text-amber-400" },
-            { icon: "🛡️", text: "100% Sécurisé", color: "text-purple-400" },
-          ].map((badge, index) => (
-            <motion.div
-              key={`badge-${index}`}
-              className="flex items-center space-x-2 text-amber-200"
-              whileHover={{ scale: 1.1, y: -3 }}
-              transition={{ type: "spring", stiffness: 400 }}>
-              <motion.div
-                className={`w-6 h-6 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full flex items-center justify-center shadow-lg shadow-amber-400/40 ${badge.color}`}
-                animate={{
-                  rotateY: [0, 360],
-                  boxShadow: [
-                    "0 0 10px rgba(251, 191, 36, 0.4)",
-                    "0 0 15px rgba(251, 191, 36, 0.6)",
-                    "0 0 10px rgba(251, 191, 36, 0.4)",
-                  ],
-                }}
-                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}>
-                <span className="text-xs font-bold text-gray-900">
-                  {badge.icon}
-                </span>
-              </motion.div>
-              <span className="text-sm font-medium">{badge.text}</span>
+              <span className="text-sm font-bold">{month.short}</span>
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Boutons CTA Premium avec Couleurs du Logo */}
+        <motion.div
+          className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12"
+          variants={itemVariants as any}>
+          {/* Bouton Principal - Violet du Logo */}
+          <motion.button
+            className="group relative px-10 py-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-full font-semibold text-lg shadow-2xl overflow-hidden"
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 20px 40px rgba(147, 51, 234, 0.4)",
+            }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 300 }}>
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <span className="relative z-10 flex items-center space-x-2">
+              <span>PRENDRE RENDEZ-VOUS</span>
+              <motion.div
+                className="w-2 h-2 bg-white rounded-full"
+                animate={{ scale: [1, 1.5, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+            </span>
+          </motion.button>
+
+          {/* Bouton Secondaire - Gris du Logo */}
+          <motion.button
+            className="group px-10 py-4 bg-gray-500 hover:bg-gray-600 text-white rounded-full font-semibold text-lg shadow-xl transition-all duration-300 border border-gray-400"
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 20px 40px rgba(107, 114, 128, 0.3)",
+            }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 300 }}>
+            <span className="flex items-center space-x-2">
+              <span>CONSULTATION </span>
+              <motion.div
+                className="w-4 h-4 border-2 border-white rounded-full"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              />
+            </span>
+          </motion.button>
+        </motion.div>
       </motion.div>
 
-      {/* Scroll indicator avec thème laser */}
+      {/* Scroll Indicator Sophistiqué */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2, duration: 0.8 }}
+        transition={{ delay: 2.5, duration: 0.8 }}
         variants={floatingVariants as any}>
         <motion.div
-          className="w-6 h-10 border-2 border-amber-400 rounded-full flex justify-center cursor-pointer shadow-lg shadow-amber-400/30"
+          className="w-8 h-12 border-2 border-white/40 rounded-full flex justify-center cursor-pointer backdrop-blur-sm bg-white/10"
           whileHover={{
             scale: 1.1,
-            boxShadow: "0 0 20px rgba(251, 191, 36, 0.5)",
+            borderColor: "rgba(168, 85, 247, 0.8)",
+            backgroundColor: "rgba(168, 85, 247, 0.1)",
           }}>
           <motion.div
-            className="w-1 h-3 bg-amber-400 rounded-full mt-2 shadow-lg shadow-amber-400/60"
+            className="w-1 h-4 bg-gradient-to-b from-purple-400 to-pink-400 rounded-full mt-2"
             animate={{
-              y: [0, 6, 0],
-              opacity: [1, 0.5, 1],
+              y: [0, 8, 0],
+              opacity: [1, 0.3, 1],
             }}
-            transition={{ duration: 1.5, repeat: Infinity }}
+            transition={{ duration: 2, repeat: Infinity }}
           />
         </motion.div>
       </motion.div>
+
+      <style jsx>{`
+        @keyframes blob {
+          0%,
+          100% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+        }
+      `}</style>
     </section>
   );
 }
