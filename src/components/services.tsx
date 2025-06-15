@@ -87,7 +87,7 @@ export default function Services() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <Image
-                src="/epilation_laser.jpg"
+                src="/3.jpg"
                 alt="Équipement laser médical avancé"
                 className="rounded-2xl shadow-xl w-full h-auto object-cover border-2 border-purple-100"
                 style={{ height: "400px" }}
@@ -194,7 +194,7 @@ export default function Services() {
 
             <div>
               <Image
-                src="/epilation_laser1.jpg"
+                src="/1.jpg"
                 alt="Traitement laser professionnel"
                 className="rounded-2xl shadow-xl w-full h-auto object-cover border-2 border-purple-100"
                 style={{ height: "400px" }}
@@ -214,7 +214,7 @@ export default function Services() {
             <div className="relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 opacity-20"></div>
               <img
-                src="/woman.jpg"
+                src="/4.jpg"
                 alt="Femme souriante et confiante"
                 className="w-full h-full object-cover object-center"
                 style={{ minHeight: "500px" }}

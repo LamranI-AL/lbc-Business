@@ -2,6 +2,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 // Simuler les icônes
 const Star = ({ className }: any) => (
@@ -340,13 +341,15 @@ export default function AboutPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
-              <motion.button
-                className="flex items-center space-x-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}>
-                <Calendar className="w-6 h-6" />
-                <span>Prenez RDV en ligne</span>
-              </motion.button>
+              <Link href="/rendz-vous">
+                <motion.button
+                  className="flex items-center space-x-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}>
+                  <Calendar className="w-6 h-6" />
+                  <span>Prenez RDV en ligne</span>
+                </motion.button>
+              </Link>
 
               <motion.button
                 className="flex items-center space-x-3 bg-gray-500 hover:bg-gray-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl transition-colors"

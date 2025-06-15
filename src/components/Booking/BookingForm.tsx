@@ -622,7 +622,7 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
               </h3>
 
               {/* Sélection du genre */}
-              <div>
+              {/* <div>
                 <h4 className="text-lg font-medium text-gray-700 mb-4">
                   Vous êtes :
                 </h4>
@@ -660,10 +660,10 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
                     <div className="font-semibold">Femme</div>
                   </button>
                 </div>
-              </div>
+              </div> */}
 
               {/* Sélection de la catégorie */}
-              {formData.selectedGender && (
+              {true && (
                 <div>
                   <h4 className="text-lg font-medium text-gray-700 mb-4">
                     Choisissez une catégorie :
@@ -726,9 +726,7 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
               <div className="flex justify-end">
                 <button
                   onClick={() => setCurrentStep(2)}
-                  disabled={
-                    !formData.selectedGender || !formData.selectedCategoryId
-                  }
+                  disabled={!formData.selectedCategoryId}
                   className="px-6 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors">
                   Continuer vers les services
                 </button>
