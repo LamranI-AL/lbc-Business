@@ -245,7 +245,7 @@ export default function Header() {
                 <span className="sr-only">Ouvrir le menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent className="w-80">
+            <SheetContent className="w-80 bg-gray-100">
               <div className="flex flex-col space-y-6 mt-6">
                 {/* Logo mobile */}
                 <div className="flex items-center space-x-3 pb-6 border-b border-gray-200">
@@ -357,7 +357,7 @@ export default function Header() {
                   </div>
 
                   {/* Bouton principal */}
-                  <Link href="/centres">
+                  <Link href="/rendz-vous">
                     <Button
                       className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-4 rounded-xl shadow-lg"
                       onClick={() => setIsOpen(false)}>
