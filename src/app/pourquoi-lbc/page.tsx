@@ -2,6 +2,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 // Simuler les icônes
 const Award = ({ className }: any) => <div className={`${className}`}>🏆</div>;
@@ -564,13 +565,16 @@ export default function PourquoiChoisirPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-2xl transform hover:scale-105">
-                  PRENDRE RENDEZ-VOUS
-                </button>
-
-                <button className="border-2 border-purple-600 text-purple-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-purple-50 transition-all duration-300">
-                  01 84 80 80 27
-                </button>
+                <Link href="/rendz-vous">
+                  <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-2xl transform hover:scale-105">
+                    PRENDRE RENDEZ-VOUS
+                  </button>
+                </Link>
+                <Link href="/contact">
+                  <button className="border-2 border-purple-600 text-purple-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-purple-50 transition-all duration-300">
+                    01 84 80 80 27
+                  </button>
+                </Link>
               </div>
 
               <p className="text-xl font-bold text-gray-900 mt-8">

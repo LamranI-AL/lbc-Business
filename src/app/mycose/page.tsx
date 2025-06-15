@@ -17,6 +17,7 @@ import {
   TrendingUp,
   Heart,
 } from "lucide-react";
+import Link from "next/link";
 
 const treatmentSteps = [
   {
@@ -520,14 +521,18 @@ export default function MycosePage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-            <button className="bg-white text-purple-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg flex items-center justify-center transition-colors">
-              <Calendar className="w-5 h-5 mr-2" />
-              Consultation Gratuite
-            </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-purple-600 font-semibold py-3 px-6 rounded-lg flex items-center justify-center transition-colors">
-              <Phone className="w-5 h-5 mr-2" />
-              01 84 80 80 27
-            </button>
+            <Link href="/contact">
+              <button className="bg-white text-purple-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg flex items-center justify-center transition-colors">
+                <Calendar className="w-5 h-5 mr-2" />
+                Consultation
+              </button>
+            </Link>
+            <Link href="/contact">
+              <button className="border-2 border-white text-white hover:bg-white hover:text-purple-600 font-semibold py-3 px-6 rounded-lg flex items-center justify-center transition-colors">
+                <Phone className="w-5 h-5 mr-2" />
+                01 84 80 80 27
+              </button>
+            </Link>
           </div>
 
           <p className="text-sm text-purple-200 mt-6">

@@ -2,6 +2,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 // Simuler les icônes
 const Award = ({ className }: any) => <div className={`${className}`}>🏆</div>;
@@ -389,13 +390,16 @@ export default function TarifsEpilationPage() {
           <motion.div
             className="flex flex-col sm:flex-row gap-6 justify-center"
             variants={itemVariants as any}>
-            <button className="bg-white text-purple-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl transform hover:scale-105">
-              CONSULTATION
-            </button>
-
-            <button className="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all duration-300">
-              01 84 80 80 27
-            </button>
+            <Link href="/rendz-vous">
+              <button className="bg-white text-purple-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl transform hover:scale-105">
+                CONSULTATION
+              </button>
+            </Link>
+            <Link href="/contact">
+              <button className="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all duration-300">
+                01 84 80 80 27
+              </button>
+            </Link>
           </motion.div>
         </motion.div>
       </section>

@@ -3,6 +3,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 // Simuler les icônes
@@ -122,11 +123,13 @@ export default function Services() {
                 </p>
               </div>
 
-              <Button
-                className="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
-                onClick={scrollToAbout}>
-                EN SAVOIR PLUS
-              </Button>
+              <Link href="/about">
+                <Button
+                  className="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+                  onClick={scrollToAbout}>
+                  EN SAVOIR PLUS
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -185,11 +188,13 @@ export default function Services() {
                 </p>
               </div>
 
-              <Button
-                className="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
-                onClick={scrollToPricing}>
-                NOS TARIFS
-              </Button>
+              <Link href="/tarifs">
+                <Button
+                  className="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+                  onClick={scrollToPricing}>
+                  NOS TARIFS
+                </Button>
+              </Link>
             </div>
 
             <div>
@@ -241,11 +246,13 @@ export default function Services() {
 
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <button className="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 shadow-md hover:shadow-lg">
-                  RAPPELEZ-MOI ! (GRATUIT)
+                  RAPPELEZ-MOI !
                 </button>
-                <button className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 shadow-md transform hover:scale-105">
-                  PRENDRE RDV EN LIGNE
-                </button>
+                <Link href="/rendz-vous">
+                  <button className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 shadow-md transform hover:scale-105">
+                    PRENDRE RDV EN LIGNE
+                  </button>
+                </Link>
               </div>
 
               {/* Badges de confiance avec thème violet */}

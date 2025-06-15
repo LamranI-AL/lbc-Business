@@ -351,10 +351,10 @@ export default function CentresList({}: Props) {
               <Loader2 className="w-8 h-8 text-purple-600 animate-spin" />
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Chargement de nos centres
+              Chargement
             </h3>
             <p className="text-gray-600 max-w-md mx-auto leading-relaxed">
-              Nous recherchons les centres{" "}
+              {/* Nous recherchons les centres{" "} */}
               <span className="font-semibold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
                 Laser Body Center
               </span>{" "}

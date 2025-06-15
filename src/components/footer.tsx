@@ -1,6 +1,7 @@
 /** @format */
 "use client";
-import { Award, Facebook, Instagram, Shield } from "lucide-react";
+import { Award, Facebook, FactoryIcon, Instagram, Shield } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 export default function Footer() {
@@ -37,20 +38,12 @@ export default function Footer() {
             <div>
               <h4 className="font-bold text-white mb-4">NOS SERVICES</h4>
               <ul className="space-y-2 text-purple-300">
+                <li className=" transition-colors">Épilation Laser Candela</li>
+                <li className=" transition-colors">Épilation Visage</li>
+                <li className=" transition-colors">Épilation Corps</li>
+                <li className=" transition-colors">Épilation Maillot</li>
                 <li className="hover:text-white cursor-pointer transition-colors">
-                  Épilation Laser Candela
-                </li>
-                <li className="hover:text-white cursor-pointer transition-colors">
-                  Épilation Visage
-                </li>
-                <li className="hover:text-white cursor-pointer transition-colors">
-                  Épilation Corps
-                </li>
-                <li className="hover:text-white cursor-pointer transition-colors">
-                  Épilation Maillot
-                </li>
-                <li className="hover:text-white cursor-pointer transition-colors">
-                  Voire plus...
+                  <Link href="/tarifs">Voire plus...</Link>
                 </li>
               </ul>
             </div>
@@ -58,62 +51,40 @@ export default function Footer() {
               <h4 className="font-bold text-white mb-4">INFORMATIONS</h4>
               <ul className="space-y-2 text-purple-300">
                 <li className="hover:text-white cursor-pointer transition-colors">
-                  Tarifs & Forfaits
+                  <Link href="/tarifs">Tarifs & Forfaits</Link>
                 </li>
                 <li className="hover:text-white cursor-pointer transition-colors">
-                  Technologie Candela
+                  <Link href="/pourquoi-lbc">Technologie Candela</Link>
                 </li>
                 <li className="hover:text-white cursor-pointer transition-colors">
-                  Consultations
+                  <Link href="/contact">Consultation</Link>
                 </li>
                 <li className="hover:text-white cursor-pointer transition-colors">
-                  FAQ
+                  <Link href="/about">FAQ</Link>
                 </li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold text-white mb-4">SUIVEZ-NOUS</h4>
               <div className="flex space-x-4 mb-4">
-                <button className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all duration-300">
-                  <Facebook className="w-5 h-5 text-white" />
-                </button>
-                <button className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all duration-300">
-                  <Instagram className="w-5 h-5 text-white" />
-                </button>
+                <Link href="https://www.tiktok.com/@laser.body.center">
+                  <button className="w-10 h-10  bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all duration-300">
+                    <Facebook className="w-5 h-5 text-white" />
+                    {/* Tiktok */}
+                  </button>
+                </Link>
+
+                <Link href="https://www.instagram.com/laserbody.center/">
+                  <button className="w-10 h-10 bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all duration-300">
+                    <Instagram className="w-5 h-5 text-white" />
+                    {/* Instagram */}
+                  </button>
+                </Link>
               </div>
               <p className="text-purple-300 text-sm">
                 Rejoignez notre communauté pour des conseils et offres
                 exclusives
               </p>
-            </div>
-          </div>
-
-          {/* Certifications */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12 py-8 border-t border-purple-300 border-opacity-30">
-            <div className="flex items-center space-x-3">
-              <Shield className="w-8 h-8 text-purple-400" />
-              <div>
-                <div className="font-semibold text-white">FDA Approuvé</div>
-                <div className="text-purple-300 text-sm">Sécurité garantie</div>
-              </div>
-            </div>
-            <div className="flex items-center space-x-3">
-              <Award className="w-8 h-8 text-purple-400" />
-              <div>
-                <div className="font-semibold text-white">Centre Certifié</div>
-                <div className="text-purple-300 text-sm">Qualité médicale</div>
-              </div>
-            </div>
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">15+</span>
-              </div>
-              <div>
-                <div className="font-semibold text-white">
-                  15 Ans d'Expérience
-                </div>
-                <div className="text-purple-300 text-sm">Leader du marché</div>
-              </div>
             </div>
           </div>
         </div>
@@ -126,18 +97,17 @@ export default function Footer() {
                 © 2025 LASER BODY CENTER. Tous droits réservés.
               </div>
               <div className="flex space-x-6 text-sm">
-                <button className="text-purple-300 hover:text-white transition-colors">
-                  Mentions légales
-                </button>
-                <button className="text-purple-300 hover:text-white transition-colors">
-                  Politique de confidentialité
-                </button>
-                <button className="text-purple-300 hover:text-white transition-colors">
-                  CGU
-                </button>
-                <button className="text-purple-300 hover:text-white transition-colors">
-                  Plan du site
-                </button>
+                <Link href="/Mentions-legales">
+                  <button className="text-purple-300 hover:text-white transition-colors">
+                    Mentions légales
+                  </button>
+                </Link>
+
+                <Link href="/Politique-de-confidentialite">
+                  <button className="text-purple-300 hover:text-white transition-colors">
+                    Politique de confidentialité
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

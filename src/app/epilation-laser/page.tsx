@@ -2,6 +2,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 // Simuler les icônes
 const Award = ({ className }: any) => <div className={`${className}`}>🏆</div>;
@@ -120,9 +121,11 @@ export default function EpilationLaserPage() {
               <motion.div
                 className="flex flex-col sm:flex-row gap-4 pt-8"
                 variants={itemVariants as any}>
-                <button className="bg-white text-gray-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl">
-                  PRENDRE RENDEZ-VOUS
-                </button>
+                <Link href="/rendz-vous">
+                  <button className="bg-white text-gray-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl">
+                    PRENDRE RENDEZ-VOUS
+                  </button>
+                </Link>
                 <button className="border-2 border-gray-300/40 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all duration-300">
                   01 84 80 80 27
                 </button>

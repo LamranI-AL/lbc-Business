@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
+import Link from "next/link";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -162,18 +163,22 @@ export default function Contact() {
               </Button>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  variant="outline"
-                  className="border-green-300 text-green-700 hover:bg-green-50">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  Prendre rendez-vous
-                </Button>
-                <Button
-                  variant="outline"
-                  className="border-purple-300 text-purple-700 hover:bg-purple-50">
-                  <Phone className="w-4 h-4 mr-2" />
-                  Voir nos centres
-                </Button>
+                <Link href="/rendz-vous">
+                  <Button
+                    variant="outline"
+                    className="border-green-300 text-green-700 hover:bg-green-50">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    Prendre rendez-vous
+                  </Button>
+                </Link>
+                <Link href="/rendz-vous">
+                  <Button
+                    variant="outline"
+                    className="border-purple-300 text-purple-700 hover:bg-purple-50">
+                    <Phone className="w-4 h-4 mr-2" />
+                    Voir mon centre
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
