@@ -108,6 +108,11 @@ export default function Footer() {
                     Politique de confidentialité
                   </button>
                 </Link>
+                <Link href="/CGU">
+                  <button className="text-purple-300 hover:text-white transition-colors">
+                    Conditions Générales d’Utilisation
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
