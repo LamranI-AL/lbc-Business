@@ -1,11 +1,17 @@
 /** @format */
 "use client";
 import React, { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import Link from "next/link";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 
-export default function HeroSection() {
-  const [currentMonth, setCurrentMonth] = useState(6); // Juillet (index 6)
+export default function HeroSectionWithSlides() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentMonth, setCurrentMonth] = useState(6);
+
   const months = [
     { short: "J", full: "Janvier", id: "jan" },
     { short: "F", full: "Février", id: "feb" },
@@ -21,17 +27,51 @@ export default function HeroSection() {
     { short: "D", full: "Décembre", id: "dec" },
   ];
 
+  const slides = [
+    {
+      type: "original",
+      content: {
+        badge: "✨ Technologie Laser Candela • FDA Approuvé",
+        discount: "-50%",
+        subtitle: "LASER BODY CENTER",
+        title: "LASER BODY CENTER",
+        description:
+          "Avec Laser Body Center le plus cher au prix le moins cher !",
+      },
+    },
+    {
+      type: "image",
+      backgroundImage: "/heroBg.png",
+      content: {
+        badge: "🔥Ouverture au mois de septembre",
+        title: "ÉPILATION LASER",
+        subtitle: "DÉFINITIVE",
+        description:
+          "Avec Laser Body Center le plus cher au prix le moins cher !",
+      },
+    },
+  ];
+
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
 
+  // Auto-slide effect
   useEffect(() => {
-    const interval = setInterval(() => {
+    const slideInterval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(slideInterval);
+  }, [slides.length]);
+
+  // Month rotation effect
+  useEffect(() => {
+    const monthInterval = setInterval(() => {
       setCurrentMonth((prev) => (prev + 1) % 12);
     }, 3000);
-    return () => clearInterval(interval);
+    return () => clearInterval(monthInterval);
   }, []);
 
-  // Variants pour animations sophistiquées
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -50,90 +90,306 @@ export default function HeroSection() {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94], // Cubic bezier easing
+        ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
   };
 
-  const floatingVariants = {
-    animate: {
-      y: [-8, 8, -8],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
+  const slideVariants = {
+    enter: (direction: any) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
     },
+    exit: (direction: any) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+  };
+
+  const renderSlideContent = (slide: any) => {
+    if (slide.type === "original") {
+      return (
+        <motion.div
+          className="relative z-10 text-center text-white max-w-6xl mx-auto px-6"
+          variants={containerVariants as any}
+          initial="hidden"
+          animate="visible">
+          {/* Badge Premium */}
+          <motion.div
+            className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-8 border border-white/20"
+            variants={itemVariants as any}
+            whileHover={{ scale: 1.05, y: -2 }}>
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span className="text-sm font-medium text-white/90">
+              {slide.content.badge}
+            </span>
+          </motion.div>
+
+          {/* Prix Principal */}
+          <motion.div
+            className="relative mb-6"
+            variants={itemVariants as any}
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300 }}>
+            <motion.div
+              className="text-8xl md:text-9xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-purple-300 bg-clip-text text-transparent mb-4"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              style={{
+                filter: "drop-shadow(0 0 40px rgba(168, 85, 247, 0.4))",
+              }}>
+              {slide.content.discount}
+            </motion.div>
+          </motion.div>
+
+          {/* Titre Principal */}
+          <motion.h1
+            className="text-xl md:text-3xl font-bold mb-2 tracking-widest text-gray-300 uppercase"
+            variants={itemVariants as any}>
+            {slide.content.subtitle}
+          </motion.h1>
+
+          <motion.h2
+            className="text-4xl md:text-7xl font-bold mb-6 relative"
+            variants={itemVariants as any}
+            style={{
+              background:
+                "linear-gradient(45deg, #fff, #a855f7, #ec4899, #fff, #a855f7)",
+              backgroundSize: "300% 300%",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              filter: "drop-shadow(0 0 20px rgba(168, 85, 247, 0.3))",
+            }}
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}>
+            {slide.content.title}
+          </motion.h2>
+
+          <motion.p
+            className="text-lg md:text-xl font-light mb-10 text-gray-200 max-w-2xl mx-auto leading-relaxed"
+            variants={itemVariants as any}>
+            {slide.content.description}
+          </motion.p>
+
+          {/* Indicateurs de Mois */}
+          <motion.div
+            className="flex justify-center space-x-4 mb-12"
+            variants={itemVariants as any}>
+            {months.map((month, index) => (
+              <motion.div
+                key={month.id}
+                className={`relative w-12 h-12 flex items-center justify-center rounded-lg transition-all duration-500 cursor-pointer ${
+                  index === currentMonth
+                    ? "bg-gradient-to-br from-purple-500 to-pink-500 text-white shadow-lg scale-110"
+                    : index < currentMonth
+                    ? "bg-white/20 text-purple-200 backdrop-blur-sm"
+                    : "bg-white/10 text-gray-400 backdrop-blur-sm"
+                }`}
+                animate={
+                  index === currentMonth
+                    ? {
+                        scale: [1.1, 1.2, 1.1],
+                        boxShadow: [
+                          "0 0 20px rgba(168, 85, 247, 0.5)",
+                          "0 0 30px rgba(168, 85, 247, 0.8)",
+                          "0 0 20px rgba(168, 85, 247, 0.5)",
+                        ],
+                      }
+                    : {}
+                }
+                transition={{ duration: 0.8 }}
+                whileHover={{ scale: 1.15, y: -3 }}
+                title={month.full}>
+                <span className="text-sm font-bold">{month.short}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      );
+    } else {
+      return (
+        <motion.div
+          className="relative z-10 text-center text-white max-w-6xl mx-auto px-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible">
+          {/* Badge */}
+          <motion.div
+            className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-8 border border-white/20"
+            variants={itemVariants as any}
+            whileHover={{ scale: 1.05, y: -2 }}>
+            <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+            <span className="text-sm font-medium text-white/90">
+              {slide.content.badge}
+            </span>
+          </motion.div>
+
+          {/* Titre Principal */}
+          <motion.h1
+            className="text-6xl md:text-8xl font-black mb-4"
+            variants={itemVariants as any}
+            style={{
+              background:
+                "linear-gradient(45deg, #fff, #a855f7, #ec4899, #fff, #a855f7)",
+              backgroundSize: "300% 300%",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              filter: "drop-shadow(0 0 30px rgba(168, 85, 247, 0.5))",
+            }}
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}>
+            {slide.content.title}
+          </motion.h1>
+
+          <motion.h2
+            className="text-3xl md:text-5xl font-bold mb-8 text-purple-300"
+            variants={itemVariants as any}>
+            {slide.content.subtitle}
+          </motion.h2>
+
+          <motion.p
+            className="text-lg md:text-xl font-light mb-12 text-white/90 max-w-3xl mx-auto leading-relaxed"
+            variants={itemVariants as any}>
+            {slide.content.description}
+          </motion.p>
+        </motion.div>
+      );
+    }
   };
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br p-20 from-slate-900 via-purple-900 to-pink-900">
-      {/* Background Pattern Sophistiqué */}
-      <div className="absolute inset-0 p-20">
-        {/* Geometric Patterns */}
-        <div className="absolute inset-0 opacity-10 ">
-          <div className="absolute top-0 left-0 w-100 h-100 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-          <div
-            className="absolute top-0 right-0 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"
-            style={{ animationDelay: "2s" }}></div>
-          <div
-            className="absolute bottom-0 left-1/2 w-96 h-96 bg-violet-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"
-            style={{ animationDelay: "4s" }}></div>
-        </div>
+    <section className="relative h-screen flex items-center justify-center overflow-hidden pt-4">
+      {/* Slide Container */}
+      <AnimatePresence
+        mode="wait"
+        custom={currentSlide}>
+        <motion.div
+          key={currentSlide}
+          custom={currentSlide}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: "spring", stiffness: 300, damping: 30 },
+            opacity: { duration: 0.5 },
+          }}
+          className="absolute inset-0 w-full h-full">
+          {/* Background pour slide original */}
+          {slides[currentSlide].type === "original" && (
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-pink-900">
+              {/* Background Pattern */}
+              <div className="absolute inset-0">
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-0 left-0 w-100 h-100 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+                  <div
+                    className="absolute top-0 right-0 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"
+                    style={{ animationDelay: "2s" }}></div>
+                  <div
+                    className="absolute bottom-0 left-1/2 w-96 h-96 bg-violet-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"
+                    style={{ animationDelay: "4s" }}></div>
+                </div>
+                <div className="absolute inset-0 opacity-5">
+                  <div
+                    className="w-full h-full"
+                    style={{
+                      backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.3) 1px, transparent 0)`,
+                      backgroundSize: "40px 40px",
+                    }}
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-purple-900/60 to-pink-900/70"></div>
+              </div>
+            </div>
+          )}
 
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.3) 1px, transparent 0)`,
-              backgroundSize: "40px 40px",
-            }}
-          />
-        </div>
+          {/* Background pour slide image */}
+          {slides[currentSlide].type === "image" && (
+            <div className="absolute inset-0">
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{
+                  backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
+                }}></div>
+              <div className="absolute inset-0 bg-black/50"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-pink-900/30 to-purple-800/40"></div>
+            </div>
+          )}
 
-        {/* Gradient Overlay Premium */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-purple-900/60 to-pink-900/70"></div>
-      </div>
+          {/* Particules */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={`particle-${currentSlide}-${i}`}
+                className="absolute w-1 h-1 rounded-full"
+                style={{
+                  background:
+                    slides[currentSlide].type === "original"
+                      ? i % 3 === 0
+                        ? "#9333EA"
+                        : i % 3 === 1
+                        ? "#EC4899"
+                        : "#8B5CF6"
+                      : i % 3 === 0
+                      ? "#f59e0b"
+                      : i % 3 === 1
+                      ? "#ef4444"
+                      : "#f97316",
+                }}
+                initial={{
+                  x:
+                    Math.random() *
+                    (typeof window !== "undefined" ? window.innerWidth : 1200),
+                  y:
+                    Math.random() *
+                    (typeof window !== "undefined" ? window.innerHeight : 800),
+                  scale: 0,
+                  opacity: 0,
+                }}
+                animate={{
+                  y: [
+                    null,
+                    Math.random() *
+                      (typeof window !== "undefined"
+                        ? window.innerHeight
+                        : 800),
+                  ],
+                  scale: [0, Math.random() * 1.5 + 0.5, 0],
+                  opacity: [0, 0.8, 0],
+                }}
+                transition={{
+                  duration: 6 + Math.random() * 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: Math.random() * 2,
+                }}
+              />
+            ))}
+          </div>
 
-      {/* Particules Élégantes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(25)].map((_, i) => (
-          <motion.div
-            key={`particle-${i}`}
-            className="absolute w-1 h-1 rounded-full"
-            style={{
-              background:
-                i % 3 === 0 ? "#9333EA" : i % 3 === 1 ? "#EC4899" : "#8B5CF6",
-            }}
-            initial={{
-              x:
-                Math.random() *
-                (typeof window !== "undefined" ? window.innerWidth : 1200),
-              y:
-                Math.random() *
-                (typeof window !== "undefined" ? window.innerHeight : 800),
-              scale: 0,
-              opacity: 0,
-            }}
-            animate={{
-              y: [
-                null,
-                Math.random() *
-                  (typeof window !== "undefined" ? window.innerHeight : 800),
-              ],
-              scale: [0, Math.random() * 1.5 + 0.5, 0],
-              opacity: [0, 0.8, 0],
-            }}
-            transition={{
-              duration: 8 + Math.random() * 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 3,
-            }}
-          />
-        ))}
-      </div>
+          {/* Contenu du slide */}
+          {renderSlideContent(slides[currentSlide])}
+        </motion.div>
+      </AnimatePresence>
 
       {/* Logo Premium */}
       <motion.div
@@ -164,193 +420,43 @@ export default function HeroSection() {
         </div>
       </motion.div>
 
-      {/* Contenu Principal */}
-      <motion.div
-        className="relative z-10 text-center text-white max-w-6xl mx-auto px-6"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible">
-        {/* Badge Premium */}
-        <motion.div
-          className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-8 border border-white/20"
-          variants={itemVariants as any}
-          whileHover={{ scale: 1.05, y: -2 }}>
-          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-          <span className="text-sm font-medium text-white/90">
-            ✨ Technologie Laser Candela • FDA Approuvé
-          </span>
-        </motion.div>
-
-        {/* Prix Principal avec Design Épuré */}
-        <motion.div
-          className="relative mb-6"
-          variants={itemVariants as any}
-          whileHover={{ scale: 1.02 }}
-          transition={{ type: "spring", stiffness: 300 }}>
-          <motion.div
-            className="text-8xl md:text-9xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-purple-300 bg-clip-text text-transparent mb-4"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            style={{
-              filter: "drop-shadow(0 0 40px rgba(168, 85, 247, 0.4))",
-            }}>
-            -50%
-          </motion.div>
-
-          {/* Éléments décoratifs modernes */}
-          <motion.div
-            className="absolute -top-6 -right-6 w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full shadow-2xl"
-            animate={{
-              y: [-3, 3, -3],
-              rotate: [0, 180, 360],
-            }}
-            transition={{ duration: 4, repeat: Infinity }}
-          />
-          <motion.div
-            className="absolute -bottom-4 -left-4 w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-400 rounded-full shadow-xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.7, 1, 0.7],
-            }}
-            transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-          />
-        </motion.div>
-
-        {/* Titre Principal Sophistiqué */}
-        <motion.h1
-          className="text-xl md:text-3xl font-bold mb-2 tracking-widest text-gray-300 uppercase"
-          variants={itemVariants as any}>
-          LASER BODY CENTER
-        </motion.h1>
-
-        {/* Nom du Centre avec Animation Gradient */}
-        <motion.h2
-          className="text-4xl md:text-7xl font-bold mb-6 relative"
-          variants={itemVariants as any}
-          style={{
-            background:
-              "linear-gradient(45deg, #fff, #a855f7, #ec4899, #fff, #a855f7)",
-            backgroundSize: "300% 300%",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            filter: "drop-shadow(0 0 20px rgba(168, 85, 247, 0.3))",
-          }}
-          animate={{
-            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}>
-          LASER BODY CENTER
-        </motion.h2>
-
-        {/* Sous-titre Premium */}
-        <motion.p
-          className="text-lg md:text-xl font-light mb-10 text-gray-200 max-w-2xl mx-auto leading-relaxed"
-          variants={itemVariants as any}>
-          Centre médical spécialisé • Résultats permanents garantis • Plus de 15
-          ans d'expertise
-        </motion.p>
-
-        {/* Indicateurs de Mois Élégants */}
-        <motion.div
-          className="flex justify-center space-x-4 mb-12"
-          variants={itemVariants as any}>
-          {months.map((month, index) => (
-            <motion.div
-              key={month.id}
-              className={`relative w-12 h-12 flex items-center justify-center rounded-lg transition-all duration-500 cursor-pointer ${
-                index === currentMonth
-                  ? "bg-gradient-to-br from-purple-500 to-pink-500 text-white shadow-lg scale-110"
-                  : index < currentMonth
-                  ? "bg-white/20 text-purple-200 backdrop-blur-sm"
-                  : "bg-white/10 text-gray-400 backdrop-blur-sm"
-              }`}
-              animate={
-                index === currentMonth
-                  ? {
-                      scale: [1.1, 1.2, 1.1],
-                      boxShadow: [
-                        "0 0 20px rgba(168, 85, 247, 0.5)",
-                        "0 0 30px rgba(168, 85, 247, 0.8)",
-                        "0 0 20px rgba(168, 85, 247, 0.5)",
-                      ],
-                    }
-                  : {}
-              }
-              transition={{ duration: 0.8 }}
-              whileHover={{ scale: 1.15, y: -3 }}
-              title={month.full}>
-              <span className="text-sm font-bold">{month.short}</span>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Boutons CTA Premium avec Couleurs du Logo */}
-        <motion.div
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12"
-          variants={itemVariants as any}>
-          {/* Bouton Principal - Violet du Logo */}
+      {/* Indicateurs de slides */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
+        {slides.map((_, index) => (
           <motion.button
-            className="group relative px-10 py-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-full font-semibold text-lg shadow-2xl overflow-hidden"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 20px 40px rgba(147, 51, 234, 0.4)",
-            }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 300 }}>
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <span className="relative z-10 flex items-center space-x-2">
-              <Link href="/rendz-vous">
-                <span>PRENDRE RENDEZ-VOUS</span>
-              </Link>
-              <motion.div
-                className="w-2 h-2 bg-white rounded-full"
-                animate={{ scale: [1, 1.5, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-            </span>
-          </motion.button>
+            key={index}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentSlide
+                ? "bg-white scale-125"
+                : "bg-white/40 hover:bg-white/60"
+            }`}
+            onClick={() => setCurrentSlide(index)}
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+          />
+        ))}
+      </div>
 
-          {/* Bouton Secondaire - Gris du Logo */}
-          <motion.button
-            className="group px-10 py-4 bg-gray-500 hover:bg-gray-600 text-white rounded-full font-semibold text-lg shadow-xl transition-all duration-300 border border-gray-400"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 20px 40px rgba(107, 114, 128, 0.3)",
-            }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 300 }}>
-            <span className="flex items-center space-x-2">
-              <Link href="/contact">
-                <span>CONSULTATION</span>
-              </Link>
-              <motion.div
-                className="w-4 h-4 border-2 border-white rounded-full"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              />
-            </span>
-          </motion.button>
-        </motion.div>
-      </motion.div>
-
-      {/* Scroll Indicator Sophistiqué */}
+      {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 right-8 z-20 "
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2.5, duration: 0.8 }}
-        variants={floatingVariants as any}>
+        transition={{ delay: 2.5, duration: 0.8 }}>
         <motion.div
           className="w-8 h-12 border-2 border-white/40 rounded-full flex justify-center cursor-pointer backdrop-blur-sm bg-white/10"
           whileHover={{
             scale: 1.1,
             borderColor: "rgba(168, 85, 247, 0.8)",
             backgroundColor: "rgba(168, 85, 247, 0.1)",
+          }}
+          animate={{
+            y: [-3, 3, -3],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
           }}>
           <motion.div
             className="w-1 h-4 bg-gradient-to-b from-purple-400 to-pink-400 rounded-full mt-2"
@@ -362,21 +468,6 @@ export default function HeroSection() {
           />
         </motion.div>
       </motion.div>
-
-      <style jsx>{`
-        @keyframes blob {
-          0%,
-          100% {
-            transform: translate(0px, 0px) scale(1);
-          }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
-          }
-        }
-      `}</style>
     </section>
   );
 }
