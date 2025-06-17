@@ -7,6 +7,7 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
+import Link from "next/link";
 
 export default function HeroSectionWithSlides() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -34,9 +35,9 @@ export default function HeroSectionWithSlides() {
         badge: "✨ Technologie Laser Candela • FDA Approuvé",
         discount: "-50%",
         subtitle: "LASER BODY CENTER",
-        title: "Ouverture le 1er septembre",
+        title: "Ouverture Le 1er Septembre",
         description:
-          "Avec Laser Body Center le plus cher au prix le moins cher !",
+          "Avec Laser Body Center le plus cher au prix le moins cher !",
       },
     },
     {
@@ -45,8 +46,8 @@ export default function HeroSectionWithSlides() {
       content: {
         badge: "Ouverture le 1er septembre",
         title: "LASER BODY CENTER",
-        subtitle: "Le Laser plus cher au prix le moins cher !",
-        description: "Le Laser plus cher au prix le moins cher !",
+        subtitle: "Le Laser le plus cher au prix le moins cher !",
+        description: "Le Laser le plus cher au prix le moins cher !",
       },
     },
   ];
@@ -135,18 +136,7 @@ export default function HeroSectionWithSlides() {
             className="relative mb-6"
             variants={itemVariants as any}
             whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}>
-            {/* <motion.div
-              className="text-8xl md:text-9xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-purple-300 bg-clip-text text-transparent mb-4"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              style={{
-                filter: "drop-shadow(0 0 40px rgba(168, 85, 247, 0.4))",
-              }}>
-              {slide.content.discount}
-            </motion.div> */}
-          </motion.div>
+            transition={{ type: "spring", stiffness: 300 }}></motion.div>
 
           {/* Titre Principal */}
           <motion.h1
@@ -175,19 +165,7 @@ export default function HeroSectionWithSlides() {
               ease: "easeInOut",
             }}>
             {slide.content.title}
-            {/* Ouverture le 1<sup className="text-black">er</sup> Septembre */}
-            {/* <motion.p
-              className="text-lg md:text-xl font-light mb-10 text-gray-200 max-w-2xl mx-auto leading-relaxed"
-              variants={itemVariants as any}>
-              {slide.content.description}
-            </motion.p> */}
           </motion.h2>
-
-          {/* <motion.p
-            className="text-lg md:text-xl font-light mb-10 text-gray-200 max-w-2xl mx-auto leading-relaxed"
-            variants={itemVariants as any}>
-            {slide.content.description}
-          </motion.p> */}
 
           {/* Indicateurs de Mois */}
           <motion.div
@@ -225,58 +203,200 @@ export default function HeroSectionWithSlides() {
         </motion.div>
       );
     } else {
+      // NOUVEAU LAYOUT POUR LE DEUXIÈME SLIDE
       return (
-        <motion.div
-          className="relative z-10 text-center text-white max-w-6xl mx-auto px-6 pt-8"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible">
-          {/* Badge */}
-          <motion.div
-            className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-8 border border-white/20"
-            variants={itemVariants as any}
-            whileHover={{ scale: 1.05, y: -2 }}>
-            <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-            {/* <span className="text-sm font-medium text-white/90">
-              {slide.content.badge}
-            </span> */}
-          </motion.div>
+        <div className="relative z-10 w-full h-full flex items-center">
+          <div className="max-w-7xl mx-auto px-6 w-full">
+            {/* Layout Desktop : Image Left + Text Right */}
+            <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center h-full">
+              {/* Image à gauche */}
+              <motion.div
+                className="relative h-full flex items-center justify-center"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible">
+                <motion.div
+                  className="relative w-full max-w-lg h-96 rounded-2xl overflow-hidden shadow-2xl"
+                  variants={itemVariants as any}
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}>
+                  <div
+                    className="absolute inset-0 bg-cover"
+                    style={{
+                      backgroundImage: `url(${slide.backgroundImage})`,
+                    }}></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                  {/* Effet de brillance */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                    animate={{ x: [-100, 500] }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    style={{ transform: "skewX(-20deg)" }}
+                  />
+                </motion.div>
+              </motion.div>
 
-          {/* Titre Principal */}
-          <motion.h1
-            className="text-6xl md:text-8xl font-black mb-4"
-            variants={itemVariants as any}
-            style={{
-              background:
-                "linear-gradient(45deg, #fff, #a855f7, #ec4899, #fff, #a855f7)",
-              backgroundSize: "300% 300%",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              filter: "drop-shadow(0 0 30px rgba(168, 85, 247, 0.5))",
-            }}
-            animate={{
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}>
-            {slide.content.title}
-          </motion.h1>
+              {/* Texte à droite */}
+              <motion.div
+                className="text-white space-y-6"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible">
+                {/* Badge */}
+                <motion.div
+                  className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20"
+                  variants={itemVariants as any}
+                  whileHover={{ scale: 1.05, y: -2 }}>
+                  <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium text-white/90">
+                    {slide.content.badge}
+                  </span>
+                </motion.div>
 
-          <motion.h2
-            className="text-3xl md:text-5xl font-bold mb-8 text-purple-300"
-            variants={itemVariants as any}>
-            {slide.content.subtitle}
-          </motion.h2>
+                {/* Titre Principal */}
+                <motion.h1
+                  className="text-5xl lg:text-7xl font-black leading-tight"
+                  variants={itemVariants as any}
+                  style={{
+                    background:
+                      "linear-gradient(45deg, #fff, #a855f7, #ec4899, #fff, #a855f7)",
+                    backgroundSize: "300% 300%",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    filter: "drop-shadow(0 0 30px rgba(168, 85, 247, 0.5))",
+                  }}
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}>
+                  {slide.content.title}
+                </motion.h1>
 
-          {/* <motion.p
-            className="text-lg md:text-xl font-light mb-12 text-white/90 max-w-3xl mx-auto leading-relaxed"
-            variants={itemVariants as any}>
-            {slide.content.description}
-          </motion.p> */}
-        </motion.div>
+                <motion.h2
+                  className="text-2xl lg:text-4xl font-bold text-purple-300"
+                  variants={itemVariants as any}>
+                  {slide.content.subtitle}
+                </motion.h2>
+
+                {/* <motion.p
+                  className="text-lg lg:text-xl font-light text-white/90 leading-relaxed"
+                  variants={itemVariants as any}>
+                  {slide.content.description}
+                </motion.p> */}
+
+                {/* Bouton CTA */}
+                <motion.button
+                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                  variants={itemVariants as any}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}>
+                  <Link href="/tarifs">Découvrir nos services</Link>
+                  <motion.svg
+                    className="ml-2 w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </motion.svg>
+                </motion.button>
+              </motion.div>
+            </div>
+
+            {/* Layout Mobile : Texte centré sur l'image complète */}
+            <div className="lg:hidden flex flex-col justify-center items-center h-full text-center">
+              {/* Texte centré sur mobile */}
+              <motion.div
+                className="text-white space-y-6 px-4"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible">
+                {/* Badge */}
+                <motion.div
+                  className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20"
+                  variants={itemVariants as any}
+                  whileHover={{ scale: 1.05, y: -2 }}>
+                  <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium text-white/90">
+                    {slide.content.badge}
+                  </span>
+                </motion.div>
+
+                {/* Titre Principal */}
+                <motion.h1
+                  className="text-4xl md:text-6xl font-black leading-tight"
+                  variants={itemVariants as any}
+                  style={{
+                    background:
+                      "linear-gradient(45deg, #fff, #a855f7, #ec4899, #fff, #a855f7)",
+                    backgroundSize: "300% 300%",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    filter: "drop-shadow(0 0 30px rgba(168, 85, 247, 0.5))",
+                  }}
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}>
+                  {slide.content.title}
+                </motion.h1>
+
+                <motion.h2
+                  className="text-xl md:text-3xl font-bold text-purple-300"
+                  variants={itemVariants as any}>
+                  {slide.content.subtitle}
+                </motion.h2>
+
+                <motion.p
+                  className="text-base md:text-lg font-light text-white/90 leading-relaxed max-w-md mx-auto"
+                  variants={itemVariants as any}>
+                  {slide.content.description}
+                </motion.p>
+
+                {/* Bouton CTA */}
+                <motion.button
+                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                  variants={itemVariants as any}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}>
+                  Découvrir nos services
+                  <motion.svg
+                    className="ml-2 w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    animate={{ x: [0, 3, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </motion.svg>
+                </motion.button>
+              </motion.div>
+            </div>
+          </div>
+        </div>
       );
     }
   };
@@ -327,7 +447,7 @@ export default function HeroSectionWithSlides() {
             </div>
           )}
 
-          {/* Background pour slide image */}
+          {/* Background pour slide image - image complète */}
           {slides[currentSlide].type === "image" && (
             <div className="absolute inset-0">
               <div
@@ -335,8 +455,8 @@ export default function HeroSectionWithSlides() {
                 style={{
                   backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
                 }}></div>
-              <div className="absolute inset-0 bg-black/50"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-pink-900/30 to-purple-800/40"></div>
+              <div className="absolute inset-0 bg-black/40"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-pink-900/20 to-purple-800/30"></div>
             </div>
           )}
 

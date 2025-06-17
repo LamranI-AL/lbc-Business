@@ -114,7 +114,7 @@ export const deleteCategory = async (id: string) => {
   try {
     // Vérifier s'il y a des services dans cette catégorie
     const servicesQuery = query(
-      collection(db, "services"),
+      collection(db, COLLECTION_NAME),
       // where('categoryId', '==', id) // Décommentez si vous voulez empêcher la suppression
     );
     const servicesSnapshot = await getDocs(servicesQuery);
