@@ -1,5 +1,4 @@
 /** @format */
-"use client";
 import { LocationWithAgents, SubService, Service, Category } from "@/types";
 import { getAllServices } from "@/actions/services";
 import { getAllCategories } from "@/actions/categories";
@@ -622,7 +621,7 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
               </h3>
 
               {/* Sélection du genre */}
-              {/* <div>
+              <div>
                 <h4 className="text-lg font-medium text-gray-700 mb-4">
                   Vous êtes :
                 </h4>
@@ -660,7 +659,7 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
                     <div className="font-semibold">Femme</div>
                   </button>
                 </div>
-              </div> */}
+              </div>
 
               {/* Sélection de la catégorie */}
               {true && (
@@ -1367,7 +1366,7 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
 
                 <div className="space-y-4">
                   {/* Informations du profil */}
-                  <div className="bg-white rounded-lg p-4 border">
+                  {/* <div className="bg-white rounded-lg p-4 border">
                     <div className="flex items-center gap-4">
                       <div className="text-2xl">
                         {formData.selectedGender === "homme" ? "👨" : "👩"}
@@ -1381,7 +1380,7 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   {formData.selectedServices.map((selectedService) => {
                     const service = filteredServices.find(

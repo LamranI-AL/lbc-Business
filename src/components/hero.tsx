@@ -33,7 +33,7 @@ export default function HeroSectionWithSlides() {
       content: {
         badge: "✨ Technologie Laser Candela • FDA Approuvé",
         discount: "-50%",
-        subtitle: "LASER BODY CENTER",
+        subtitle: "🔥Ouverture au mois de septembre",
         title: "LASER BODY CENTER",
         description:
           "Avec Laser Body Center le plus cher au prix le moins cher !",
@@ -45,7 +45,7 @@ export default function HeroSectionWithSlides() {
       content: {
         badge: "🔥Ouverture au mois de septembre",
         title: "ÉPILATION LASER",
-        subtitle: "DÉFINITIVE",
+        subtitle: "Avec Laser Body Center le plus cher au prix le moins cher !",
         description:
           "Avec Laser Body Center le plus cher au prix le moins cher !",
       },
@@ -116,7 +116,7 @@ export default function HeroSectionWithSlides() {
     if (slide.type === "original") {
       return (
         <motion.div
-          className="relative z-10 text-center text-white max-w-6xl mx-auto px-6"
+          className="relative z-10 text-center text-white max-w-6xl mx-auto px-6 pt-8"
           variants={containerVariants as any}
           initial="hidden"
           animate="visible">
@@ -137,7 +137,7 @@ export default function HeroSectionWithSlides() {
             variants={itemVariants as any}
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}>
-            <motion.div
+            {/* <motion.div
               className="text-8xl md:text-9xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-purple-300 bg-clip-text text-transparent mb-4"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -146,7 +146,7 @@ export default function HeroSectionWithSlides() {
                 filter: "drop-shadow(0 0 40px rgba(168, 85, 247, 0.4))",
               }}>
               {slide.content.discount}
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           {/* Titre Principal */}
@@ -178,11 +178,11 @@ export default function HeroSectionWithSlides() {
             {slide.content.title}
           </motion.h2>
 
-          <motion.p
+          {/* <motion.p
             className="text-lg md:text-xl font-light mb-10 text-gray-200 max-w-2xl mx-auto leading-relaxed"
             variants={itemVariants as any}>
             {slide.content.description}
-          </motion.p>
+          </motion.p> */}
 
           {/* Indicateurs de Mois */}
           <motion.div
@@ -222,7 +222,7 @@ export default function HeroSectionWithSlides() {
     } else {
       return (
         <motion.div
-          className="relative z-10 text-center text-white max-w-6xl mx-auto px-6"
+          className="relative z-10 text-center text-white max-w-6xl mx-auto px-6 pt-8"
           variants={containerVariants}
           initial="hidden"
           animate="visible">
@@ -266,11 +266,11 @@ export default function HeroSectionWithSlides() {
             {slide.content.subtitle}
           </motion.h2>
 
-          <motion.p
+          {/* <motion.p
             className="text-lg md:text-xl font-light mb-12 text-white/90 max-w-3xl mx-auto leading-relaxed"
             variants={itemVariants as any}>
             {slide.content.description}
-          </motion.p>
+          </motion.p> */}
         </motion.div>
       );
     }
