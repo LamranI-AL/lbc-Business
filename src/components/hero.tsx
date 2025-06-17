@@ -45,7 +45,7 @@ export default function HeroSectionWithSlides() {
       content: {
         badge: "Ouverture le 1er septembre",
         title: "LASER BODY CENTER",
-        subtitle: "Avec Laser Body Center le plus cher au prix le moins cher !",
+        subtitle: "Le Laser plus cher au prix le moins cher !",
         description: "Le Laser plus cher au prix le moins cher !",
       },
     },
