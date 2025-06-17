@@ -621,7 +621,7 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
               </h3>
 
               {/* Sélection du genre */}
-              <div>
+              {/* <div>
                 <h4 className="text-lg font-medium text-gray-700 mb-4">
                   Vous êtes :
                 </h4>
@@ -659,7 +659,7 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
                     <div className="font-semibold">Femme</div>
                   </button>
                 </div>
-              </div>
+              </div> */}
 
               {/* Sélection de la catégorie */}
               {true && (
