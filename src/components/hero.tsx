@@ -33,21 +33,20 @@ export default function HeroSectionWithSlides() {
       content: {
         badge: "✨ Technologie Laser Candela • FDA Approuvé",
         discount: "-50%",
-        subtitle: "🔥Ouverture au mois de septembre",
-        title: "LASER BODY CENTER",
+        subtitle: "LASER BODY CENTER",
+        title: "Ouverture le 1er septembre",
         description:
           "Avec Laser Body Center le plus cher au prix le moins cher !",
       },
     },
     {
       type: "image",
-      backgroundImage: "/heroBg.png",
+      backgroundImage: "/heroBg1.png",
       content: {
-        badge: "🔥Ouverture au mois de septembre",
-        title: "ÉPILATION LASER",
+        badge: "Ouverture le 1er septembre",
+        title: "LASER BODY CENTER",
         subtitle: "Avec Laser Body Center le plus cher au prix le moins cher !",
-        description:
-          "Avec Laser Body Center le plus cher au prix le moins cher !",
+        description: "Le Laser plus cher au prix le moins cher !",
       },
     },
   ];
@@ -176,6 +175,12 @@ export default function HeroSectionWithSlides() {
               ease: "easeInOut",
             }}>
             {slide.content.title}
+            {/* Ouverture le 1<sup className="text-black">er</sup> Septembre */}
+            {/* <motion.p
+              className="text-lg md:text-xl font-light mb-10 text-gray-200 max-w-2xl mx-auto leading-relaxed"
+              variants={itemVariants as any}>
+              {slide.content.description}
+            </motion.p> */}
           </motion.h2>
 
           {/* <motion.p
@@ -232,9 +237,9 @@ export default function HeroSectionWithSlides() {
             variants={itemVariants as any}
             whileHover={{ scale: 1.05, y: -2 }}>
             <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-            <span className="text-sm font-medium text-white/90">
+            {/* <span className="text-sm font-medium text-white/90">
               {slide.content.badge}
-            </span>
+            </span> */}
           </motion.div>
 
           {/* Titre Principal */}
