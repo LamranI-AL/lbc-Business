@@ -269,10 +269,12 @@ export default function Contact() {
                       <MapPin className="w-5 h-5 text-purple-600" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900">Centres</h4>
-                      <p className="text-gray-600">Paris, Lyon, Marseille</p>
+                      <h4 className="font-semibold text-gray-900">Centre</h4>
+                      <p className="text-gray-600">
+                        15 rue Raspail bois colombes
+                      </p>
                       <p className="text-sm text-purple-600 cursor-pointer hover:underline">
-                        Voir tous nos centres →
+                        Voir details →
                       </p>
                     </div>
                   </div>

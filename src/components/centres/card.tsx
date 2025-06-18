@@ -46,8 +46,7 @@ type Props = {
 
 function LocationCard({ location, onBookingClick }: Props) {
   // Image optimisée pour centres médicaux
-  const defaultImage =
-    "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=300&fit=crop";
+  const defaultImage = "/1.jpg";
 
   // Fonction pour formater les heures d'ouverture
   const formatWorkingHours = (
@@ -160,9 +159,10 @@ function LocationCard({ location, onBookingClick }: Props) {
           <div className="flex-1">
             <p className="text-gray-900 font-medium">{location.address}</p>
             <p className="text-gray-600 text-sm">
-              {location.city}, {location.postalCode}
+              {/* {location.city} */}
+              {/* {location.postalCode} */}
             </p>
-            <p className="text-gray-500 text-xs">{location.country}</p>
+            {/* <p className="text-gray-500 text-xs">{location.country}</p> */}
           </div>
         </div>
 
