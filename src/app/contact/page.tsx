@@ -1,6 +1,7 @@
 /** @format */
 "use client";
 import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 // Composants UI simplifiés intégrés
 import {
   MapPin,
@@ -21,6 +22,14 @@ import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 
+// Configuration EmailJS (à remplacer par vos vraies valeurs)
+// const EMAILJS_CONFIG = {
+//   SERVICE_ID: "service_at6461b", // Votre Service ID
+//   ADMIN_TEMPLATE_ID: "template_92w8muc", // Template pour l'admin
+//   CLIENT_TEMPLATE_ID: "template_92w8muc", // MÊME TEMPLATE que l'admin pour test
+//   PUBLIC_KEY: "ulbiD1ZFPgCTfKbGW", // Votre Public Key
+// };
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     nom: "",
@@ -33,6 +42,10 @@ export default function Contact() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [emailResults, setEmailResults] = useState({
+    adminSent: false,
+    clientSent: false,
+  });
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -70,6 +83,50 @@ export default function Contact() {
     }
   };
 
+  // const sendAdminEmail = async (templateParams: any) => {
+  //   try {
+  //     // LOG pour debug
+  //     console.log("📧 ADMIN EMAIL - Paramètres envoyés:", templateParams);
+
+  //     emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+
+  //     const result = await emailjs.send(
+  //       EMAILJS_CONFIG.SERVICE_ID,
+  //       EMAILJS_CONFIG.ADMIN_TEMPLATE_ID,
+  //       templateParams,
+  //       EMAILJS_CONFIG.PUBLIC_KEY,
+  //     );
+
+  //     console.log("✅ Email admin envoyé avec succès:", result);
+  //     return { success: true, result };
+  //   } catch (error) {
+  //     console.error("❌ Erreur lors de l'envoi de l'email admin:", error);
+  //     return { success: false, error };
+  //   }
+  // };
+
+  // const sendClientEmail = async (templateParams: any) => {
+  //   try {
+  //     // LOG pour debug
+  //     console.log("📧 CLIENT EMAIL - Paramètres envoyés:", templateParams);
+
+  //     emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+
+  //     const result = await emailjs.send(
+  //       EMAILJS_CONFIG.SERVICE_ID,
+  //       EMAILJS_CONFIG.CLIENT_TEMPLATE_ID,
+  //       templateParams,
+  //       EMAILJS_CONFIG.PUBLIC_KEY,
+  //     );
+
+  //     console.log("✅ Email client envoyé avec succès:", result);
+  //     return { success: true, result };
+  //   } catch (error) {
+  //     console.error("❌ Erreur lors de l'envoi de l'email client:", error);
+  //     return { success: false, error };
+  //   }
+  // };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -87,15 +144,91 @@ export default function Contact() {
     }
 
     setIsLoading(true);
+    let adminEmailSuccess = false;
+    let clientEmailSuccess = false;
 
     try {
+      // LOG des données du formulaire
+      console.log("📝 Données du formulaire:", formData);
+
+      // Préparer les paramètres pour l'email ADMIN
+      // const adminEmailParams = {
+      //   from_name: formData.nom,
+      //   from_email: formData.email,
+      //   phone: formData.phone || "Non renseigné",
+      //   subject: formData.subject || "Nouveau message de contact",
+      //   message: formData.message,
+      //   type: formData.type,
+      //   to_name: "Laser Body Center",
+      //   reply_to: formData.email,
+      // };
+
+      // Préparer les paramètres pour l'email CLIENT
+      // Configuration selon les variables standard d'EmailJS
+      // const clientEmailParams = {
+      //   // Variables STANDARD EmailJS (ne pas changer ces noms)
+      //   user_email: formData.email, // Email du destinataire (OBLIGATOIRE)
+      //   user_name: formData.nom, // Nom du destinataire
+      //   message: `Bonjour ${
+      //     formData.nom
+      //   },\n\nNous avons bien reçu votre message concernant: ${
+      //     formData.subject || "votre demande"
+      //   }\n\nVotre message:\n${
+      //     formData.message
+      //   }\n\nNotre équipe vous répondra dans les plus brefs délais.\n\nCordialement,\nL'équipe Laser Body Center`,
+
+      //   // Variables personnalisées pour le contenu
+      //   client_name: formData.nom,
+      //   client_email: formData.email,
+      //   client_phone: formData.phone || "Non renseigné",
+      //   client_subject: formData.subject || "Votre demande de contact",
+      //   client_message: formData.message,
+      //   client_type: formData.type,
+      //   company_name: "Laser Body Center",
+      //   company_email: "contact@laserbodycenter.fr",
+      //   company_phone: "01 84 80 80 27",
+      //   company_address: "15 rue Raspail, Bois-Colombes",
+      // };
+
+      // // Envoyer l'email à l'ADMIN
+      // console.log("🚀 Envoi de l'email admin...");
+      // const adminResult = await sendAdminEmail(adminEmailParams);
+      // adminEmailSuccess = adminResult.success;
+
+      // // Envoyer l'email au CLIENT
+      // console.log("🚀 Envoi de l'email client...");
+      // const clientResult = await sendClientEmail(clientEmailParams);
+      // clientEmailSuccess = clientResult.success;
+
+      // Mettre à jour les statuts des emails
+      // setEmailResults({
+      //   adminSent: adminEmailSuccess,
+      //   clientSent: clientEmailSuccess,
+      // });
+
+      // if (adminEmailSuccess) {
+      //   console.log("✅ Email admin envoyé avec succès");
+      // } else {
+      //   console.error("❌ Échec de l'envoi de l'email admin");
+      // }
+
+      // if (clientEmailSuccess) {
+      //   console.log("✅ Email client envoyé avec succès");
+      // } else {
+      //   console.error("❌ Échec de l'envoi de l'email client");
+      // }
+
       // Simuler un délai d'envoi pour UX
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Sauvegarder dans Firebase
-      const result = await saveToFirebase(formData);
+      const firebaseResult = await saveToFirebase({
+        ...formData,
+        adminEmailSent: adminEmailSuccess,
+        clientEmailSent: clientEmailSuccess,
+      });
 
-      if (result.success) {
+      if (firebaseResult.success || adminEmailSuccess || clientEmailSuccess) {
         setIsSubmitted(true);
         // Réinitialiser le formulaire
         setFormData({
@@ -110,7 +243,7 @@ export default function Contact() {
         alert("Erreur lors de l'envoi. Veuillez réessayer.");
       }
     } catch (error) {
-      console.error("Erreur:", error);
+      console.error("❌ Erreur générale:", error);
       alert("Erreur inattendue lors de l'envoi du message");
     } finally {
       setIsLoading(false);
@@ -120,14 +253,6 @@ export default function Contact() {
   if (isSubmitted) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-        {/* Header intégré */}
-        <header className="bg-white shadow-sm border-b">
-          <div className="container mx-auto px-4 py-4">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-              Laser Body Center
-            </h1>
-          </div>
-        </header>
         <main className="container mx-auto px-4 py-20">
           <div className="max-w-2xl mx-auto text-center">
             <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce">
@@ -136,7 +261,7 @@ export default function Contact() {
             <h1 className="text-4xl font-bold text-gray-900 mb-6">
               Message envoyé avec succès ! 🎉
             </h1>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            <p className="text-xl text-gray-600 mb-4 leading-relaxed">
               Merci beaucoup pour votre message. Notre équipe{" "}
               <span className="font-semibold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
                 Laser Body Center
@@ -144,20 +269,65 @@ export default function Contact() {
               vous répondra dans les plus brefs délais.
             </p>
 
+            {/* Statut des emails */}
+            <div className="space-y-3 mb-6">
+              {emailResults.adminSent && (
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-center justify-center space-x-2">
+                    <CheckCircle className="w-5 h-5 text-blue-600" />
+                    <span className="text-blue-800 font-medium">
+                      Notre équipe a été notifiée de votre demande
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {emailResults.clientSent && (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="flex items-center justify-center space-x-2">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <span className="text-green-800 font-medium">
+                      Email de confirmation envoyé à votre adresse
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {!emailResults.adminSent && !emailResults.clientSent && (
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                  <div className="flex items-center justify-center space-x-2">
+                    <MessageSquare className="w-5 h-5 text-yellow-600" />
+                    <span className="text-yellow-800 font-medium">
+                      Message sauvegardé, emails en cours de traitement
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 mb-8 border border-blue-200">
               <h3 className="font-semibold text-gray-900 mb-2">
                 Que se passe-t-il maintenant ?
               </h3>
               <div className="space-y-2 text-sm text-gray-600">
                 <p>✅ Votre message a été reçu et enregistré</p>
-                <p>📧 Vous recevrez une réponse par email dans les 24h</p>
+                <p>📧 Vous recevrez une réponse personnalisée dans les 24h</p>
                 <p>📞 Pour les urgences, appelez le 01 84 80 80 27</p>
+                {emailResults.clientSent && (
+                  <p>💌 Vérifiez votre boîte email pour la confirmation</p>
+                )}
+                {emailResults.adminSent && (
+                  <p>🔔 Notre équipe a été immédiatement notifiée</p>
+                )}
               </div>
             </div>
 
             <div className="space-y-4">
               <Button
-                onClick={() => setIsSubmitted(false)}
+                onClick={() => {
+                  setIsSubmitted(false);
+                  setEmailResults({ adminSent: false, clientSent: false });
+                }}
                 className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-3">
                 Envoyer un autre message
               </Button>
@@ -183,14 +353,6 @@ export default function Contact() {
             </div>
           </div>
         </main>
-        {/* Footer intégré */}
-        <footer className="bg-gray-900 text-white py-8 mt-16">
-          <div className="container mx-auto px-4 text-center">
-            <p className="text-gray-400">
-              © 2025 Laser Body Center. Tous droits réservés.
-            </p>
-          </div>
-        </footer>
       </div>
     );
   }
@@ -273,9 +435,11 @@ export default function Contact() {
                       <p className="text-gray-600">
                         15 rue Raspail bois colombes
                       </p>
-                      <p className="text-sm text-purple-600 cursor-pointer hover:underline">
-                        Voir details →
-                      </p>
+                      <Link href="/about">
+                        <p className="text-sm text-purple-600 cursor-pointer hover:underline">
+                          Voir details →
+                        </p>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -304,7 +468,9 @@ export default function Contact() {
                   Envoyez-nous votre message
                 </h2>
 
-                <div className="space-y-6">
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="text-gray-700 font-medium">
@@ -414,7 +580,7 @@ export default function Contact() {
                     </p>
 
                     <Button
-                      onClick={handleSubmit}
+                      type="submit"
                       disabled={isLoading}
                       className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-3 transform hover:-translate-y-0.5 transition-all duration-300">
                       {isLoading ? (
@@ -430,7 +596,7 @@ export default function Contact() {
                       )}
                     </Button>
                   </div>
-                </div>
+                </form>
               </CardContent>
             </Card>
           </div>

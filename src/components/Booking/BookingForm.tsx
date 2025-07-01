@@ -5,6 +5,7 @@ import { getAllCategories } from "@/actions/categories";
 import React, { useState, useEffect } from "react";
 import { getAllQuickBookings } from "@/actions/Bookings";
 import { any } from "zod";
+import emailjs from "@emailjs/browser";
 
 // Interface pour les détails de service avec séances
 interface ServiceDetail extends Service {
@@ -68,6 +69,20 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
   const [currentStep, setCurrentStep] = useState(1); // 1: Genre/Catégorie, 2: Services, 3: Dates, 4: Infos
   const [existingBookings, setExistingBookings] = useState<any[]>([]);
   const [loadingBookings, setLoadingBookings] = useState(false);
+  const [emailSending, setEmailSending] = useState(false);
+
+  // // Configuration EmailJS corrigée
+  // const EMAILJS_CONFIG = {
+  //   serviceId: "service_cqe64it",
+  //   clientTemplateId: "template_xltq8x8", // Template pour le client
+  //   adminTemplateId: "template_xltq8x8", // Template pour l'admin
+  //   publicKey: "ulbiD1ZFPgCTfKbGW",
+  // };
+
+  // // Initialiser EmailJS
+  // useEffect(() => {
+  //   emailjs.init(EMAILJS_CONFIG.publicKey);
+  // }, []);
 
   // Charger les catégories et services au montage
   useEffect(() => {
@@ -138,6 +153,187 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
       setFilteredServices([]);
     }
   }, [formData.selectedCategoryId, formData.selectedGender, allServices]);
+
+  // Fonctions utilitaires pour validation email
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email.trim());
+  };
+
+  const sanitizeEmail = (email: string): string => {
+    return email.trim().toLowerCase();
+  };
+
+  // // Fonction pour envoyer l'email de confirmation - VERSION CORRIGÉE
+  // const sendConfirmationEmail = async (bookingData: BookingFormData) => {
+  //   try {
+  //     setEmailSending(true);
+
+  //     // VALIDATION STRICTE DE L'EMAIL
+  //     if (!bookingData.clientEmail || bookingData.clientEmail.trim() === "") {
+  //       console.error("Email du client manquant");
+  //       alert("Veuillez saisir une adresse email valide");
+  //       return false;
+  //     }
+
+  //     // Valider le format de l'email
+  //     if (!validateEmail(bookingData.clientEmail)) {
+  //       console.error("Format email invalide:", bookingData.clientEmail);
+  //       alert("Veuillez saisir une adresse email valide");
+  //       return false;
+  //     }
+
+  //     // Nettoyer l'email
+  //     const cleanEmail = sanitizeEmail(bookingData.clientEmail);
+  //     console.log("Email nettoyé:", cleanEmail);
+
+  //     // Préparer les détails des services
+  //     const servicesDetails = bookingData.selectedServices
+  //       .map((selectedService) => {
+  //         const service = filteredServices.find(
+  //           (s) => s.id === selectedService.serviceId,
+  //         );
+  //         const subService = service?.subServices?.find(
+  //           (sub) => sub.id === selectedService.subServiceId,
+  //         );
+
+  //         if (!service || !subService) return "";
+
+  //         const basePrice =
+  //           selectedService.useDiscountPrice && subService.discountPrice
+  //             ? subService.discountPrice
+  //             : subService.normalPrice;
+
+  //         const totalPrice =
+  //           selectedService.usePackagePrice && selectedService.sessionsCount > 1
+  //             ? calculatePackagePrice(
+  //                 basePrice,
+  //                 selectedService.sessionsCount,
+  //                 service.packageDiscountPercent,
+  //               )
+  //             : basePrice * selectedService.sessionsCount;
+
+  //         return `• ${service.name} - ${subService.name}
+  //   Séances: ${selectedService.sessionsCount}${
+  //           selectedService.usePackagePrice ? " (Forfait)" : ""
+  //         }
+  //   Prix: ${totalPrice.toFixed(2)}€
+  //   Durée: ${subService.duration} min par séance`;
+  //       })
+  //       .join("\n\n");
+
+  //     // Générer un ID de réservation unique
+  //     const bookingId = `BK${Date.now()}-${Math.random()
+  //       .toString(36)
+  //       .substr(2, 9)}`;
+
+  //     // Paramètres communs pour les emails
+  //     const commonEmailParams = {
+  //       client_first_name: bookingData.clientFirstName,
+  //       client_last_name: bookingData.clientLastName,
+  //       client_email: cleanEmail,
+  //       client_phone: bookingData.clientPhone || "Non renseigné",
+  //       location_name: location.name,
+  //       location_address: location.address || "Adresse non disponible",
+  //       location_phone: location.phone || "Téléphone non disponible",
+  //       selected_date: new Date(bookingData.selectedDate).toLocaleDateString(
+  //         "fr-FR",
+  //         {
+  //           weekday: "long",
+  //           year: "numeric",
+  //           month: "long",
+  //           day: "numeric",
+  //         },
+  //       ),
+  //       selected_time: bookingData.selectedTime,
+  //       services_details: servicesDetails,
+  //       total_amount: bookingData.totalAmount.toFixed(2),
+  //       notes: bookingData.notes || "Aucune note spéciale",
+  //       booking_id: bookingId,
+  //       category_name: getSelectedCategory()?.name || "Non spécifié",
+  //       created_at: new Date().toLocaleString("fr-FR"),
+  //     };
+
+  //     // ÉTAPE 1: Envoyer l'email de confirmation au client
+  //     console.log("📧 Envoi de l'email de confirmation au client...");
+
+  //     const clientEmailParams = {
+  //       ...commonEmailParams,
+  //       to_email: cleanEmail,
+  //       to_name: `${bookingData.clientFirstName} ${bookingData.clientLastName}`,
+  //       from_name: location.name || "Centre de Soins",
+  //       reply_to: "noreply@laserbodycentre.fr",
+  //     };
+
+  //     console.log("Paramètres email client:", {
+  //       to_email: clientEmailParams.to_email,
+  //       to_name: clientEmailParams.to_name,
+  //       service_id: EMAILJS_CONFIG.serviceId,
+  //       template_id: EMAILJS_CONFIG.clientTemplateId,
+  //     });
+
+  //     try {
+  //       const clientResponse = await emailjs.send(
+  //         EMAILJS_CONFIG.serviceId,
+  //         EMAILJS_CONFIG.clientTemplateId,
+  //         clientEmailParams,
+  //       );
+  //       console.log("✅ Email client envoyé avec succès:", clientResponse);
+  //     } catch (clientError) {
+  //       console.error("❌ Erreur envoi email client:", clientError);
+  //       throw new Error(
+  //         "Impossible d'envoyer l'email de confirmation au client",
+  //       );
+  //     }
+
+  //     // ÉTAPE 2: Envoyer la notification à l'administrateur
+  //     console.log("📧 Envoi de la notification admin...");
+
+  //     const adminEmailParams = {
+  //       ...commonEmailParams,
+  //       to_email: "epilbodyfr@gmail.com", // Email de l'admin
+  //       to_name: "Équipe Réservations",
+  //       from_name: "Système de Réservation",
+  //       subject: `🗓️ Nouvelle réservation - ${bookingData.clientFirstName} ${bookingData.clientLastName}`,
+  //       // Informations supplémentaires pour l'admin
+  //       admin_notification: "true",
+  //       booking_status: "En attente de confirmation",
+  //     };
+
+  //     console.log("Paramètres email admin:", {
+  //       to_email: adminEmailParams.to_email,
+  //       client_email: cleanEmail,
+  //       booking_id: bookingId,
+  //     });
+
+  //     try {
+  //       const adminResponse = await emailjs.send(
+  //         EMAILJS_CONFIG.serviceId,
+  //         EMAILJS_CONFIG.adminTemplateId || EMAILJS_CONFIG.clientTemplateId, // Fallback au template client si admin n'existe pas
+  //         adminEmailParams,
+  //       );
+  //       console.log("✅ Email admin envoyé avec succès:", adminResponse);
+  //     } catch (adminError) {
+  //       console.warn("⚠️ Erreur envoi email admin (non bloquant):", adminError);
+  //       // Ne pas faire échouer la réservation si l'email admin échoue
+  //     }
+
+  //     return true;
+  //   } catch (error) {
+  //     console.error("❌ Erreur lors de l'envoi des emails:", error);
+
+  //     // Afficher une erreur plus précise à l'utilisateur
+  //     if (error instanceof Error) {
+  //       alert(`Erreur d'envoi d'email: ${error.message}`);
+  //     } else {
+  //       alert("Erreur lors de l'envoi des emails de confirmation");
+  //     }
+
+  //     return false;
+  //   } finally {
+  //     setEmailSending(false);
+  //   }
+  // };
 
   // Ajouter les données de séances aux services
   const enhanceServicesWithSessions = (
@@ -527,9 +723,96 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
     generateTimeSlots(date);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Fonction handleSubmit corrigée
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onBookingSubmit(formData);
+
+    // VALIDATIONS FINALES
+    if (!formData.clientEmail.trim()) {
+      alert("Veuillez saisir votre adresse email");
+      return;
+    }
+
+    if (!validateEmail(formData.clientEmail)) {
+      alert("Veuillez saisir une adresse email valide");
+      return;
+    }
+
+    if (!formData.clientFirstName.trim() || !formData.clientLastName.trim()) {
+      alert("Veuillez saisir votre nom et prénom");
+      return;
+    }
+
+    if (!formData.selectedDate || !formData.selectedTime) {
+      alert("Veuillez sélectionner une date et une heure");
+      return;
+    }
+
+    if (formData.selectedServices.length === 0) {
+      alert("Veuillez sélectionner au moins un service");
+      return;
+    }
+
+    try {
+      setEmailSending(true);
+
+      // 1. Préparer les données pour la base de données
+      console.log("💾 Préparation des données pour la base...");
+
+      const bookingDataForDB = {
+        ...formData,
+        // Nettoyer et formater l'email
+        clientEmail: sanitizeEmail(formData.clientEmail),
+        // Ajouter des métadonnées
+        locationId: location.id,
+        status: "pending",
+        createdAt: new Date().toISOString(),
+      };
+
+      console.log("Données à enregistrer:", {
+        email: bookingDataForDB.clientEmail,
+        name: `${bookingDataForDB.clientFirstName} ${bookingDataForDB.clientLastName}`,
+        services: bookingDataForDB.selectedServices.length,
+        total: bookingDataForDB.totalAmount,
+      });
+
+      // 2. Soumettre la réservation dans la base de données
+      console.log("💾 Enregistrement de la réservation en base...");
+      onBookingSubmit(bookingDataForDB);
+      console.log("✅ Réservation enregistrée en base");
+
+      // 3. Envoyer les emails de confirmation
+      console.log("📧 Envoi des emails de confirmation...");
+      // const emailSent = await sendConfirmationEmail(formData);
+
+      //       if (emailSent) {
+      //         console.log("✅ Processus de réservation terminé avec succès");
+
+      //         // Afficher un message de succès
+      //         alert(`🎉 Réservation confirmée !
+
+      // 📧 Un email de confirmation a été envoyé à ${formData.clientEmail}
+      // 📱 Vous recevrez un SMS de rappel avant votre rendez-vous
+
+      // Merci pour votre confiance !`);
+
+      //         // Fermer le formulaire
+      //         onClose();
+      //       } else {
+      //         console.warn("⚠️ Réservation enregistrée mais emails non envoyés");
+      //         alert(
+      //           "Réservation enregistrée, mais l'envoi des emails a échoué. Nous vous contacterons directement.",
+      //         );
+      //         onClose(); // Fermer quand même le formulaire
+      //       }
+    } catch (error) {
+      console.error("❌ Erreur lors de la soumission:", error);
+      alert(
+        "Une erreur s'est produite lors de la réservation. Veuillez réessayer.",
+      );
+    } finally {
+      setEmailSending(false);
+    }
   };
 
   const isSubServiceSelected = (serviceId: string, subServiceId: string) => {
@@ -547,6 +830,8 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
   const getSelectedCategory = () => {
     return categories.find((cat) => cat.id === formData.selectedCategoryId);
   };
+
+  console.log(formData, "formData");
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
@@ -620,47 +905,6 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
                 Sélectionnez votre profil
               </h3>
 
-              {/* Sélection du genre */}
-              {/* <div>
-                <h4 className="text-lg font-medium text-gray-700 mb-4">
-                  Vous êtes :
-                </h4>
-                <div className="grid grid-cols-2 gap-4">
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        selectedGender: "homme",
-                      }))
-                    }
-                    className={`p-6 rounded-xl border-2 transition-all text-center ${
-                      formData.selectedGender === "homme"
-                        ? "border-blue-500 bg-blue-50 text-blue-700"
-                        : "border-gray-200 hover:border-gray-300 text-gray-700"
-                    }`}>
-                    <div className="text-4xl mb-3">👨</div>
-                    <div className="font-semibold">Homme</div>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        selectedGender: "femme",
-                      }))
-                    }
-                    className={`p-6 rounded-xl border-2 transition-all text-center ${
-                      formData.selectedGender === "femme"
-                        ? "border-pink-500 bg-pink-50 text-pink-700"
-                        : "border-gray-200 hover:border-gray-300 text-gray-700"
-                    }`}>
-                    <div className="text-4xl mb-3">👩</div>
-                    <div className="font-semibold">Femme</div>
-                  </button>
-                </div>
-              </div> */}
-
               {/* Sélection de la catégorie */}
               {true && (
                 <div>
@@ -733,7 +977,7 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
             </div>
           )}
 
-          {/* Étape 2: Sélection des services (adapté de votre code existant) */}
+          {/* Étape 2: Sélection des services */}
           {currentStep === 2 && (
             <div className="space-y-6">
               <div className="flex items-center justify-between">
@@ -1365,23 +1609,6 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
                 </h4>
 
                 <div className="space-y-4">
-                  {/* Informations du profil */}
-                  {/* <div className="bg-white rounded-lg p-4 border">
-                    <div className="flex items-center gap-4">
-                      <div className="text-2xl">
-                        {formData.selectedGender === "homme" ? "👨" : "👩"}
-                      </div>
-                      <div>
-                        <h5 className="font-semibold text-gray-900">
-                          Profil: {formData.selectedGender}
-                        </h5>
-                        <p className="text-sm text-gray-600">
-                          Catégorie: {getSelectedCategory()?.name}
-                        </p>
-                      </div>
-                    </div>
-                  </div> */}
-
                   {formData.selectedServices.map((selectedService) => {
                     const service = filteredServices.find(
                       (s) => s.id === selectedService.serviceId,
@@ -1502,8 +1729,18 @@ function EnhancedBookingForm({ location, onBookingSubmit, onClose }: Props) {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-3 px-4 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-lg font-bold hover:from-teal-700 hover:to-emerald-700 transition-all shadow-lg">
-                  Confirmer la réservation - {formData.totalAmount.toFixed(2)}€
+                  disabled={emailSending}
+                  className="flex-1 py-3 px-4 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-lg font-bold hover:from-teal-700 hover:to-emerald-700 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">
+                  {emailSending ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                      Envoi en cours...
+                    </>
+                  ) : (
+                    `Confirmer la réservation - ${formData.totalAmount.toFixed(
+                      2,
+                    )}€`
+                  )}
                 </button>
               </div>
             </form>

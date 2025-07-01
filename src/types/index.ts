@@ -183,7 +183,18 @@ export interface Category {
   createdAt: Date;
   updatedAt: Date;
 }
-
+export interface User {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  role: "user" | "admin" | "manager";
+  isActive: boolean;
+  createdAt: any;
+  lastLogin: any;
+  updatedAt: any;
+}
 export interface Service {
   id: string;
   name: string;
