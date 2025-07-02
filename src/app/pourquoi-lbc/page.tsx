@@ -558,7 +558,7 @@ export default function PourquoiChoisirPage() {
                   💡 Choisissez l'expertise Laser Body Center
                 </h3>
                 <p className="text-xl">
-                  La seule clinique qui utilise{" "}
+                  La seule centre qui utilise{" "}
                   <span className="font-bold">exclusivement</span> la
                   technologie Candela pour des résultats à vie.
                 </p>

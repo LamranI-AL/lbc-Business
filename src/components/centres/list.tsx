@@ -47,22 +47,24 @@ export default function CentresList({}: Props) {
       // Les clés correspondent à votre nouveau template HTML.
       // `services_list` et `total` ont été supprimés.
       const clientParams = {
-        to_name: `${bookingData.clientFirstName} ${bookingData.clientLastName}`,
+        client_first_name: `${bookingData.clientFirstName} ${bookingData.clientLastName}`,
         email: bookingData.clientEmail,
         location: selectedLocation?.name || "notre centre",
-        date: bookingData.selectedDate,
-        time: bookingData.selectedTime,
+        selected_date: bookingData.selectedDate,
+        selected_time: bookingData.selectedTime,
+        services_details: bookingData.selectedServices,
       };
 
       // 2. Préparer les paramètres pour le TEMPLATE ADMIN (version détaillée)
       // L'admin reçoit toujours toutes les informations.
       const adminParams = {
-        client_name: `${bookingData.clientFirstName} ${bookingData.clientLastName}`,
+        client_first_name: `${bookingData.clientFirstName} ${bookingData.clientLastName}`,
         email: "epilbodyfr@gmail.com",
+        client_email: bookingData.clientEmail,
         client_phone: bookingData.clientPhone,
         location: selectedLocation?.name || "notre centre",
-        date: bookingData.selectedDate,
-        time: bookingData.selectedTime,
+        selected_date: bookingData.selectedDate,
+        selected_time: bookingData.selectedTime,
         total: bookingData.totalAmount, // L'admin voit le total
         booking_id: newBookingId,
       };

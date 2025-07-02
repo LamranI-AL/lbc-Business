@@ -72,9 +72,9 @@ export default function Services() {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full mb-6">
               <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full"></div>
             </div>
-            <h2 className="font-bold text-3xl bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-4">
+            {/* <h2 className="font-bold text-3xl bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-4">
               Center médical d'épilation Laser Body Center
-            </h2>
+            </h2> */}
             <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
               Chez Laser Body Center, nous utilisons exclusivement les lasers
               Candela, la référence mondiale en épilation durable. Contrairement
@@ -105,19 +105,19 @@ export default function Services() {
               <div className="space-y-4 text-gray-600 text-lg leading-relaxed">
                 <p>
                   Laser Body Center, les experts du laser médical, le vrai.
-                  Depuis plusieurs années, nous proposons à nos patient.e.s les
+                  Depuis plusieurs années, nous proposons à nos patientes les
                   meilleures solutions en matière d'épilation laser.
                 </p>
 
                 <p>
                   En plus de la qualité de nos prestations, nous respectons un
                   protocole sanitaire strict : personnel formé pour notre
-                  activité et respecte à toutes nos consignes, des tests de
-                  contrôle tous les 3 mois.
+                  activité et respect de nos consignes, et respect des
+                  contrôles.
                 </p>
 
                 <p>
-                  À Laser body centre nous nous devons de respecter des
+                  À Laser body center nous nous devons de respecter des
                   standards efficaces, performants et sécurisés, votre peau est
                   en de bonnes mains.
                 </p>

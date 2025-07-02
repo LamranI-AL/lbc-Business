@@ -307,9 +307,7 @@ export default function AboutPage() {
                   <MapPin className="w-8 h-8 text-white mx-auto mb-3" />
                   <div className="font-semibold mb-2">Localisation</div>
                   <div className="text-sm text-purple-200">
-                    Paris 11ᵉ
-                    <br />
-                    Métro Voltaire
+                    15 rue Raspail bois colombes
                   </div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
