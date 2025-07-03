@@ -291,7 +291,7 @@ export default function AboutPage() {
                 <p className="text-purple-100">
                   Notre centre, situé au{" "}
                   <span className="font-semibold text-white">
-                    100 boulevard Voltaire – Paris 11ᵉ
+                    15 Rue Raspail92270 Bois-Colombes, France
                   </span>
                   , vous accueille du lundi au samedi, de 10h à 20h.
                 </p>
@@ -307,7 +307,7 @@ export default function AboutPage() {
                   <MapPin className="w-8 h-8 text-white mx-auto mb-3" />
                   <div className="font-semibold mb-2">Localisation</div>
                   <div className="text-sm text-purple-200">
-                    15 rue Raspail bois colombes
+                    15 Rue Raspail92270 Bois-Colombes, France
                   </div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
