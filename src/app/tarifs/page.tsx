@@ -401,7 +401,7 @@ export default function TarifsEpilationPage() {
             </Link>
             <Link href="/contact">
               <button className="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all duration-300">
-                01 84 80 80 27
+                01 23 45 67 89
               </button>
             </Link>
           </motion.div>

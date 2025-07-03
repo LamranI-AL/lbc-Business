@@ -186,7 +186,7 @@ export default function Contact() {
       //   client_type: formData.type,
       //   company_name: "Laser Body Center",
       //   company_email: "contact@laserbodycenter.fr",
-      //   company_phone: "01 84 80 80 27",
+      //   company_phone: "01 23 45 67 89",
       //   company_address: "15 rue Raspail, Bois-Colombes",
       // };
 
@@ -312,7 +312,7 @@ export default function Contact() {
               <div className="space-y-2 text-sm text-gray-600">
                 <p>✅ Votre message a été reçu et enregistré</p>
                 <p>📧 Vous recevrez une réponse personnalisée dans les 24h</p>
-                <p>📞 Pour les urgences, appelez le 01 84 80 80 27</p>
+                <p>📞 Pour les urgences, appelez le 01 23 45 67 89</p>
                 {emailResults.clientSent && (
                   <p>💌 Vérifiez votre boîte email pour la confirmation</p>
                 )}
@@ -396,7 +396,7 @@ export default function Contact() {
                     <div>
                       <h4 className="font-semibold text-gray-900">Téléphone</h4>
                       <p className="text-gray-600 font-medium">
-                        01 84 80 80 27
+                        01 23 45 67 89
                       </p>
                       <p className="text-sm text-green-600">Appel gratuit</p>
                     </div>

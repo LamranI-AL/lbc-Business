@@ -59,7 +59,7 @@ export default function Locations() {
             <AlertTriangle className="w-12 h-12 mx-auto" />
           </div>
           <h3 className="text-2xl font-bold mb-2">POUR UN RDV RAPIDE,</h3>
-          <h4 className="text-xl font-bold mb-2">APPELEZ LE 01 84 80 80 27</h4>
+          <h4 className="text-xl font-bold mb-2">APPELEZ LE 01 23 45 67 89</h4>
           <p className="text-lg mb-4">en cliquant sur le numéro !</p>
           <p className="text-xl font-bold mb-2">
             NOUS AVONS DES CRÉNEAUX DISPONIBLES

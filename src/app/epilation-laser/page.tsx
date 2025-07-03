@@ -127,7 +127,7 @@ export default function EpilationLaserPage() {
                   </button>
                 </Link>
                 <button className="border-2 border-gray-300/40 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all duration-300">
-                  01 84 80 80 27
+                  01 23 45 67 89
                 </button>
               </motion.div>
             </div>
