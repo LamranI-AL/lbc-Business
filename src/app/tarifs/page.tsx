@@ -72,7 +72,6 @@ export default function TarifsEpilationPage() {
     { zone: "Pommettes", prix: "26", sessions: "1" },
     { zone: "Visage complet", prix: "49", sessions: "1" },
     { zone: "Aisselles (bras)", prix: "27", sessions: "1" },
-    // { zone: "Avant-bras", prix: "43.87", sessions: "1" },
     { zone: "Bras complets", prix: "63", sessions: "1" },
     { zone: "Aréoles des seins", prix: "17", sessions: "1" },
     { zone: "Ligne ombilicale", prix: "26", sessions: "1" },
@@ -230,7 +229,6 @@ export default function TarifsEpilationPage() {
                   Nombre de séances
                 </div>
                 <div className="text-xl font-bold text-center">Prix</div>
-                {/* <div className="text-xl font-bold text-center">Action</div> */}
               </div>
             </div>
 
@@ -266,18 +264,8 @@ export default function TarifsEpilationPage() {
                       <div className="text-lg font-bold text-transparent bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text">
                         {tarif.prix}€
                       </div>
-                      {/* <div className="text-sm text-gray-500">
-                        Forfait complet
-                      </div> */}
                     </div>
                   </div>
-
-                  {/* Action Button */}
-                  {/* <div className="text-center flex items-center justify-center">
-                            <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                            Réserver
-                            </button>
-                        </div> */}
                 </motion.div>
               ))}
             </div>
@@ -306,6 +294,61 @@ export default function TarifsEpilationPage() {
               </div>
             </div>
           </motion.div>
+
+          {/* Pack 1 Séance Section */}
+          <motion.div
+            className="mt-20 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden"
+            variants={itemVariants as any}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}>
+            {/* Pack Header */}
+            <div className="bg-gradient-to-r from-pink-500 to-purple-500 text-white">
+              <div className="p-8 text-center">
+                <h3 className="text-3xl font-bold mb-2">Pack 1 Séance</h3>
+                <p className="text-pink-100 text-lg">
+                  Offres combinées avantageuses
+                </p>
+              </div>
+            </div>
+
+            {/* Pack Table */}
+            <div className="divide-y divide-gray-100">
+              {[
+                { pack: "Aisselles + Maillot", prix: "39" },
+                { pack: "Aisselles + Maillot + Demi-jambes", prix: "99" },
+                { pack: "Aisselles + Maillot + Jambes", prix: "199" },
+                { pack: "All Body", prix: "249" },
+              ].map((pack, index) => (
+                <motion.div
+                  key={index}
+                  className="grid grid-cols-2 p-6 hover:bg-pink-50 transition-all duration-300 group"
+                  variants={itemVariants as any}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}>
+                  {/* Pack Name */}
+                  <div className="flex items-center space-x-3">
+                    <div className="w-3 h-3 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full group-hover:scale-125 transition-transform"></div>
+                    <span className="text-lg font-semibold text-gray-900 group-hover:text-pink-600 transition-colors">
+                      {pack.pack}
+                    </span>
+                  </div>
+
+                  {/* Prix */}
+                  <div className="text-center flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-transparent bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text">
+                        {pack.prix}€
+                      </div>
+                      <div className="text-sm text-gray-500">1 séance</div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -323,51 +366,6 @@ export default function TarifsEpilationPage() {
               variants={itemVariants as any}>
               Pourquoi choisir Laser Body Center ?
             </motion.h2>
-          </motion.div>
-
-          <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}>
-            {[
-              {
-                icon: <Award className="w-12 h-12" />,
-                title: "Technologie #1 Mondiale",
-                desc: "Candela GentleMax Pro Plus™, la référence FDA approuvée",
-              },
-              {
-                icon: <Shield className="w-12 h-12" />,
-                title: "Sécurité Médicale",
-                desc: "Centre médical agréé avec protocoles stricts",
-              },
-              {
-                icon: <Star className="w-12 h-12" />,
-                title: "15+ Années d'Expertise",
-                desc: "Spécialistes reconnus en épilation laser",
-              },
-              {
-                icon: <Zap className="w-12 h-12" />,
-                title: "Résultats Garantis",
-                desc: "95% d'efficacité prouvée cliniquement",
-              },
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                className="text-center group"
-                variants={itemVariants as any}>
-                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  {feature.icon}
-                </div>
-
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  {feature.title}
-                </h3>
-
-                <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
-              </motion.div>
-            ))}
           </motion.div>
         </div>
       </section>
