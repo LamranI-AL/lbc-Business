@@ -44,7 +44,7 @@ const FAQ = () => {
       id: 5,
       question: "Comment se passe la première consultation ?",
       answer:
-        "Notre professionnelle de santé ou sinon notre expert laser definitif. ",
+        "Notre professionnelle de santé va réaliser un examen médical classique afin de s’assurer que le traitement d’épilation laser sera réalisé sans aucun danger. Il examinera votre type de peau, votre type de poils. ",
     },
     {
       id: 6,
