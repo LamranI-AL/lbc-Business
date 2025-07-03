@@ -34,6 +34,7 @@ export default function Header() {
     // { label: "Le laser pour Mycose", href: "/mycose" },
 
     { label: "Tarifs", href: "/tarifs" },
+    { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "/contact" },
   ];
 
