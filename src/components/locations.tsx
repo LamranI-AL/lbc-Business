@@ -114,13 +114,13 @@ export default function Locations() {
 
                     {center.metro && (
                       <div className="text-sm text-gray-600 space-y-1">
-                        {center.metro.split("\n").map((line, i) => (
+                        {center.metro.split("\n").map((line : any, i) => (
                           <p key={i}>{line}</p>
                         ))}
                         {center.parking &&
                           center.parking
                             .split("\n")
-                            .map((line, i) => <p key={i}>{line}</p>)}
+                            .map((line : any, i) => <p key={i}>{line}</p>)}
                       </div>
                     )}
                   </div>
