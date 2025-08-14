@@ -572,7 +572,7 @@ export default function PourquoiChoisirPage() {
                 </Link>
                 <Link href="/contact">
                   <button className="border-2 border-purple-600 text-purple-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-purple-50 transition-all duration-300">
-                    01 23 45 67 89
+                    epilbodyfr@gmail.com
                   </button>
                 </Link>
               </div>

@@ -147,7 +147,7 @@ centres: [
     id: "paris-11",
     nom: "Centre Paris 11 - Voltaire",
     adresse: "100 bd Voltaire, 75011 Paris",
-    telephone: "01 84 80 16 50",
+    telephone: "epilbodyfr@gmail.com",
     metro: "Voltaire ou Saint-Ambroise, ligne 5",
     parking: "ZenPark PARIS – BASTILLE – VOLTAIRE",
     horaires: {...},

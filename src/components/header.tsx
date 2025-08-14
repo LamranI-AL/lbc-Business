@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Phone, Zap, User, Calendar, Star } from "lucide-react";
+import { Menu, Phone, Mail, Zap, User, Calendar, Star } from "lucide-react";
 // import { Link } from "wouter";
 import { auth } from "@/lib/firebase";
 import { getCurrentUser } from "@/actions/auth";
@@ -199,17 +199,17 @@ export default function Header() {
 
           {/* CTA Section Desktop */}
           <div className="hidden lg:flex items-center space-x-6">
-            {/* Numéro de téléphone */}
+            {/* Email de contact */}
             <div className="text-right">
               <div className="flex items-center space-x-2 text-sm font-semibold text-purple-600">
                 <div className="w-8 h-8 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center">
-                  <Phone className="h-4 w-4 text-green-600" />
+                  <Mail className="h-4 w-4 text-green-600" />
                 </div>
                 <div>
                   <div className="text-sm font-bold text-gray-900">
-                    01 23 45 67 89
+                    epilbodyfr@gmail.com
                   </div>
-                  <p className="text-xs text-green-600">Appel </p>
+                  <p className="text-xs text-green-600">Email</p>
                 </div>
               </div>
             </div>
@@ -330,14 +330,14 @@ export default function Header() {
                   {/* Téléphone */}
                   <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
                     <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
-                      <Phone className="h-5 w-5 text-white" />
+                      <Mail className="h-5 w-5 text-white" />
                     </div>
                     <div>
                       <div className="text-sm font-bold text-gray-900">
-                        01 23 45 67 89
+                       epilbodyfr@gmail.com
                       </div>
                       <p className="text-xs text-green-600">
-                        Appel & confidentiel
+                        Email& confidentiel
                       </p>
                     </div>
                   </div>

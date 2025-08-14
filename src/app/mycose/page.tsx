@@ -530,7 +530,7 @@ export default function MycosePage() {
             <Link href="/contact">
               <button className="border-2 border-white text-white hover:bg-white hover:text-purple-600 font-semibold py-3 px-6 rounded-lg flex items-center justify-center transition-colors">
                 <Phone className="w-5 h-5 mr-2" />
-                01 23 45 67 89
+                epilbodyfr@gmail.com
               </button>
             </Link>
           </div>

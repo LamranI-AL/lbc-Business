@@ -186,7 +186,7 @@ export default function Contact() {
       //   client_type: formData.type,
       //   company_name: "Laser Body Center",
       //   company_email: "contact@laserbodycenter.fr",
-      //   company_phone: "01 23 45 67 89",
+      //   company_phone: "epilbodyfr@gmail.com",
       //   company_address: "15 rue Raspail, Bois-Colombes",
       // };
 
@@ -312,7 +312,7 @@ export default function Contact() {
               <div className="space-y-2 text-sm text-gray-600">
                 <p>✅ Votre message a été reçu et enregistré</p>
                 <p>📧 Vous recevrez une réponse personnalisée dans les 24h</p>
-                <p>📞 Pour les urgences, appelez le 01 23 45 67 89</p>
+                <p>📞 Pour les urgences, contactez  epilbodyfr@gmail.com</p>
                 {emailResults.clientSent && (
                   <p>💌 Vérifiez votre boîte email pour la confirmation</p>
                 )}
@@ -345,7 +345,7 @@ export default function Contact() {
                   <Button
                     variant="outline"
                     className="border-purple-300 text-purple-700 hover:bg-purple-50">
-                    <Phone className="w-4 h-4 mr-2" />
+                    <Mail className="w-4 h-4 mr-2" />
                     Voir mon centre
                   </Button>
                 </Link>
@@ -391,18 +391,18 @@ export default function Contact() {
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
                     <div className="w-10 h-10 bg-gradient-to-br from-pink-100 to-purple-100 rounded-full flex items-center justify-center">
-                      <Phone className="w-5 h-5 text-purple-600" />
+                      <Mail className="w-5 h-5 text-purple-600" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900">Téléphone</h4>
+                      <h4 className="font-semibold text-gray-900">Email</h4>
                       <p className="text-gray-600 font-medium">
-                        01 23 45 67 89
+                        epilbodyfr@gmail.com
                       </p>
-                      <p className="text-sm text-green-600">Appel gratuit</p>
+                      <p className="text-sm text-green-600">Réponse rapide</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-4">
+                  {/* <div className="flex items-start space-x-4">
                     <div className="w-10 h-10 bg-gradient-to-br from-pink-100 to-purple-100 rounded-full flex items-center justify-center">
                       <Mail className="w-5 h-5 text-purple-600" />
                     </div>
@@ -413,7 +413,7 @@ export default function Contact() {
                       </p>
                       <p className="text-sm text-blue-600">Réponse sous 24h</p>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="flex items-start space-x-4">
                     <div className="w-10 h-10 bg-gradient-to-br from-pink-100 to-purple-100 rounded-full flex items-center justify-center">

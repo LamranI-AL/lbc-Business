@@ -354,7 +354,7 @@ export default function AboutPage() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}>
                 <Phone className="w-6 h-6" />
-                <span>01 84 80 80 27</span>
+                <span>epilbodyfr@gmail.com</span>
               </motion.button>
             </div>
 
