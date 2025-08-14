@@ -120,7 +120,7 @@ export default function Locations() {
                         {center.parking &&
                           center.parking
                             .split("\n")
-                            .map((line : any, i) => <p key={i}>{line}</p>)}
+                            .map((line : any, i:any) => <p key={i}>{line}</p>)}
                       </div>
                     )}
                   </div>
